@@ -1,0 +1,40 @@
+/* botmap.eliaspfeffer.de: the same dark, quiet look as the app, its orange for what matters. System fonts only:
+   the site loads nothing from anyone else. */
+:root {
+  --bg: #141414; --panel: #1a1a1a; --panel2: #202020; --line: #2c2c2c; --line2: #3a3a3a;
+  --text: #ececec; --dim: #9a9a9a; --faint: #6e6e6e; --sun: #f08a3c; --peach: #ffd2a8;
+  --mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.6 -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif; -webkit-font-smoothing: antialiased; }
+a { color: var(--peach); }
+.wrap { max-width: 960px; margin: 0 auto; padding: 0 16px; }
+nav { border-bottom: 1px solid var(--line); }
+nav .wrap { display: flex; align-items: center; gap: 22px; height: 60px; }
+.brand { display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: 17px; color: var(--text); text-decoration: none; }
+.brand img { width: 26px; height: 26px; }
+nav .links { display: flex; gap: 18px; margin-left: auto; font-size: 14px; }
+nav .links a { color: var(--dim); text-decoration: none; }
+nav .links a:hover, nav .links a[aria-current] { color: var(--text); }
+.label { font: 500 11px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--dim); }
+h1 { font-size: clamp(36px, 7vw, 60px); line-height: 1.05; letter-spacing: -0.02em; margin: 18px 0 16px; }
+h2 { font-size: 24px; margin: 0 0 10px; letter-spacing: -0.01em; }
+.hero { padding: 72px 0 48px; }
+.hero p { max-width: 620px; color: var(--dim); font-size: 18px; margin: 0; }
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; padding-bottom: 64px; }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 24px; }
+.card ul { margin: 12px 0 18px; padding-left: 18px; color: var(--dim); }
+.card li { margin: 4px 0; }
+.btn { display: inline-flex; align-items: center; height: 40px; padding: 0 16px; border-radius: 9px; font-weight: 600; font-size: 14px; text-decoration: none; border: 1px solid var(--line2); background: var(--panel2); color: var(--text); }
+.btn.sun { background: var(--sun); border-color: var(--sun); color: #1a1817; }
+.btn[aria-disabled] { opacity: .55; pointer-events: none; }
+.doc { padding: 56px 0 72px; max-width: 720px; }
+.doc h1 { font-size: clamp(32px, 6vw, 44px); }
+.doc h2 { font-size: 19px; margin-top: 32px; }
+.doc p, .doc li { color: #c9c9c9; }
+.doc .meta { color: var(--faint); font-size: 14px; }
+footer { border-top: 1px solid var(--line); padding: 24px 0 40px; color: var(--faint); font-size: 14px; }
+footer .wrap { display: flex; flex-wrap: wrap; gap: 18px; }
+footer a { color: var(--dim); text-decoration: none; }
