@@ -15,6 +15,8 @@
 2. Open the DMG and drag Botmap to Applications.
 3. Open Botmap from Applications. It is signed and notarized by Apple, so macOS shows no warning.
 
+Updates: from version 2.1, Botmap checks this repository's latest release by itself; when a newer one is out, the sidebar shows "Update to …", which downloads it, checks Apple's signature and notarization, and restarts Botmap.
+
 ## First launch
 
 - The welcome screen lists the agents Botmap found on the Mac. There is nothing to sign in to.
@@ -37,6 +39,10 @@ On the map, with the pointer over a chat where it applies:
 ## Voice
 
 - Dictation and GPT Live need an OpenAI key. Paste it in Settings.
+
+## Replies to mails
+
+- Settings › Replies to your mails › Turn on in Codex: an automation in the Codex app (which has the Gmail and Outlook plugins) looks every half hour, reading only, for replies to mails the user sent, and Botmap puts each reply into Needs you in the project Mail.
 
 ## Pair the iPhone
 
