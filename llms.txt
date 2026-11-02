@@ -1,0 +1,52 @@
+# Botmap
+
+> Botmap is a free Mac app that puts every Claude Code and Codex agent chat on one mind map, with four views of the same chats: Mindmap, Swipe, Bubbles and Matrix. It imports the chats already on the Mac, runs the agents through their own command lines on the plan the user already has, and lets the user answer them with one key or by voice. A companion iPhone app (swipe through what needs you, answer by voice, call your agent) is in Apple's review and coming to the App Store. This file tells an AI agent how to set Botmap up for its user, from download to a paired iPhone.
+
+## What you need
+
+- A Mac with Apple silicon, macOS 12 or later.
+- Claude Code and/or the Codex CLI, installed and signed in. Botmap uses them as they are; it has no account of its own.
+- For dictation and GPT Live: an OpenAI API key.
+- For the iPhone: Tailscale on the Mac and on the iPhone, signed in to the same account.
+
+## Install
+
+1. Download https://github.com/eliaspfeffer/botmap-site/releases/latest/download/Botmap.dmg (this URL always serves the newest release).
+2. Open the DMG and drag Botmap to Applications.
+3. Open Botmap from Applications. It is signed and notarized by Apple, so macOS shows no warning.
+
+## First launch
+
+- The welcome screen lists the agents Botmap found on the Mac. There is nothing to sign in to.
+- Botmap keeps its work in plain files under `~/Botmap`.
+
+## Bring in existing chats
+
+- Click Import (the agent logos at the bottom left), or press H. Botmap reads the Claude Code and Codex chats already on the Mac and sorts them into projects.
+
+## Keys
+
+On the map, with the pointer over a chat where it applies:
+
+- S search, A add, T topic, C child node
+- I important, U urgent, E then I extremely important, E then U extremely urgent
+- D done, L later, R reply, O open the whole conversation
+- G goal, N name, M move, P picture
+- Z undo, F fit the map to the window
+
+## Voice
+
+- Dictation and GPT Live need an OpenAI key. Paste it in Settings.
+
+## Pair the iPhone
+
+1. On the Mac: Settings › Your iPhone, turn it on. It uses Tailscale serve, so both devices need Tailscale signed in to the same account.
+2. On the iPhone: open Botmap and tap "Scan the code", then scan the code the Mac shows (or copy the link on the Mac and tap "Paste the link").
+3. The iPhone app is still in Apple's review; until it is in the App Store there is nothing to install on the iPhone.
+
+## Help and links
+
+- Support: eliaspfeffer@gmail.com, https://botmap.eliaspfeffer.de/support/
+- Source: https://github.com/eliaspfeffer/botmap-app
+- Licence: https://github.com/eliaspfeffer/botmap-app/blob/main/LICENSE.md (free for personal use and teams of up to five people; larger organizations need a paid licence)
+- Privacy: https://botmap.eliaspfeffer.de/privacy/

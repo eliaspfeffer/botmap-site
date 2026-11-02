@@ -34,39 +34,67 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 6px 18px; }
 footer a { color: var(--dim); text-decoration: none; }
 footer a:hover { color: var(--text); }
 
-/* Landing page: one screen. The film is the picture; the words and the button sit beside it. */
+/* Landing page: one screen. The film on the right; on the left the promise, the button, and the two devices it runs on.
+   The boxed word in the headline is the film's own caption mark. */
 .home { min-height: 100vh; min-height: 100dvh; display: grid; grid-template-columns: minmax(0, 1fr); grid-template-rows: auto 1fr auto; }
 .home .wrap { max-width: 1600px; padding-left: clamp(16px, 2.5vw, 40px); padding-right: clamp(16px, 2.5vw, 40px); }
-.stage { display: grid; grid-template-columns: minmax(0, 1fr); grid-template-areas: "pitch" "film" "facts"; gap: 24px; align-content: center; align-content: safe center; padding-top: 24px; padding-bottom: 32px; }
-.pitch { grid-area: pitch; }
-.pitch h1 { font-size: clamp(38px, 3vw + 14px, 62px); font-weight: 700; line-height: 1.02; letter-spacing: -0.035em; margin: 0 0 16px; }
-.lede { margin: 0 0 26px; max-width: 34ch; color: var(--soft); font-size: 18px; line-height: 1.5; }
-.get { display: inline-flex; align-items: center; gap: 10px; height: 54px; padding: 0 26px 0 21px; border-radius: 12px; background: var(--sun); color: #1c140e; font-size: 17px; font-weight: 600; text-decoration: none; box-shadow: inset 0 1px 0 rgba(255, 255, 255, .3), 0 1px 2px rgba(0, 0, 0, .5), 0 10px 24px -12px rgba(240, 138, 60, .6); transition: background-color .15s ease-out, transform .15s ease-out; }
+.stage { display: grid; grid-template-columns: minmax(0, 1fr); gap: 32px; align-content: center; align-content: safe center; padding-top: 28px; padding-bottom: 36px; }
+/* On a phone the side column dissolves so the film can sit right under the button. */
+.side { display: contents; }
+.pitch { order: 1; }
+.film { order: 2; }
+.devices { order: 3; }
+.source { order: 4; }
+.pitch h1 { font-size: clamp(40px, 3vw + 14px, 60px); font-weight: 700; line-height: 1.06; letter-spacing: -0.035em; margin: 0 0 18px; text-wrap: balance; }
+.mark { display: inline-block; position: relative; white-space: nowrap; line-height: 1; padding: .03em .12em .1em; margin: .12em .02em 0; border: 2px solid var(--sun); border-radius: 2px; }
+.mark::after { content: ""; position: absolute; top: -.17em; right: -.17em; width: .13em; height: .13em; border-top: 2px solid var(--sun); border-right: 2px solid var(--sun); }
+.lede { margin: 0 0 28px; max-width: 40ch; text-wrap: pretty; color: var(--soft); font-size: 18px; line-height: 1.5; }
+.get { display: inline-flex; align-items: center; gap: 10px; height: 54px; padding: 0 26px 0 22px; border-radius: 12px; background: var(--sun); color: #1c140e; font-size: 17px; font-weight: 600; text-decoration: none; box-shadow: inset 0 1px 0 rgba(255, 255, 255, .3), 0 1px 2px rgba(0, 0, 0, .5), 0 10px 24px -12px rgba(240, 138, 60, .6); transition: background-color .15s ease-out, transform .15s ease-out; }
 .get:hover { background: #f59a54; color: #1c140e; }
 .get:active { background: #e47c2f; transform: translateY(1px); }
 .get:focus-visible { border-radius: 12px; }
-.get svg { flex: none; }
+.get svg { flex: none; margin-top: -3px; }
 .fine { margin: 12px 0 0; max-width: 36ch; color: var(--dim); font-size: 13px; line-height: 1.5; }
-.film { grid-area: film; margin: 0; }
+.film { margin: 0; }
 .film video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; border-radius: 12px; background: #efebe5; box-shadow: 0 0 0 1px rgba(255, 255, 255, .07), 0 30px 60px -30px rgba(0, 0, 0, .9); }
 .film figcaption { margin-top: 10px; color: var(--dim); font-size: 13px; }
-.facts { grid-area: facts; display: grid; gap: 10px; margin: 0; padding-top: 20px; border-top: 1px solid var(--line); font-size: 14px; line-height: 1.5; }
-.facts div { display: grid; grid-template-columns: 58px minmax(0, 1fr); gap: 12px; }
-.facts dt { font-weight: 600; }
-.facts dd { margin: 0; color: var(--dim); }
+.film video a { color: #1c140e; } /* the fallback link, only seen where video does not play */
+
+/* The Mac and the iPhone, drawn in CSS around two real screenshots (made-up demo data). --w is the laptop's width. */
+.devices { --w: min(300px, 70vw); margin: 0; display: grid; grid-template-columns: auto auto; align-items: end; justify-content: start; }
+.mac { position: relative; grid-area: 1 / 1; width: var(--w); margin-left: calc(var(--w) * .07); }
+.lid { padding: calc(var(--w) * .022) calc(var(--w) * .022) calc(var(--w) * .028); background: #0b0b0c; border-radius: calc(var(--w) * .045) calc(var(--w) * .045) 0 0; box-shadow: 0 0 0 1px #3a3a3e, inset 0 1px 0 rgba(255, 255, 255, .08); }
+.lid img { display: block; width: 100%; height: auto; border-radius: 2px; }
+.mac::after { content: ""; display: block; height: calc(var(--w) * .034); margin: 0 calc(var(--w) * -.07); border-radius: 0 0 calc(var(--w) * .06) calc(var(--w) * .06) / 0 0 calc(var(--w) * .03) calc(var(--w) * .03); background: linear-gradient(#77777d, #48484d 45%, #26262a); box-shadow: 0 14px 22px -12px rgba(0, 0, 0, .9); }
+.mac::before { content: ""; position: absolute; z-index: 1; left: 50%; bottom: calc(var(--w) * .022); width: 17%; height: calc(var(--w) * .012); transform: translateX(-50%); border-radius: 0 0 6px 6px; background: #303034; }
+.phone { position: relative; z-index: 2; grid-area: 1 / 2; width: calc(var(--w) * .27); margin: 0 0 calc(var(--w) * -.02) calc(var(--w) * -.1); padding: calc(var(--w) * .009); background: #0b0b0c; border-radius: calc(var(--w) * .047); box-shadow: 0 0 0 1px #4b4b51, -12px 8px 22px -8px rgba(0, 0, 0, .85), 0 22px 30px -16px rgba(0, 0, 0, .9); }
+.phone img { display: block; width: 100%; height: auto; border-radius: calc(var(--w) * .038); }
+.devices figcaption { grid-area: 2 / 1 / 3 / 3; display: flex; justify-content: space-between; gap: 16px; margin-top: 14px; color: var(--dim); font-size: 13px; line-height: 1.4; }
+
+/* The GitHub mark stands to the left of two short lines. */
+.source { position: relative; margin: 0; padding-left: 40px; color: var(--dim); font-size: 13px; line-height: 1.45; }
+.gh { display: block; color: var(--text); font-size: 15px; font-weight: 600; text-decoration: none; }
+.gh:hover { color: var(--peach); }
+.gh svg { position: absolute; left: 0; top: 50%; width: 28px; height: 28px; transform: translateY(-50%); }
+.source span { display: block; }
+.source span a { color: var(--dim); }
+.source span a:hover { color: var(--text); }
+
 @media (min-width: 900px) {
-  .stage { grid-template-columns: minmax(330px, 430px) minmax(0, 1fr); grid-template-areas: "pitch film" "facts film"; column-gap: clamp(40px, 5vw, 88px); row-gap: 36px; padding-top: clamp(20px, 4vh, 48px); padding-bottom: clamp(20px, 4vh, 48px); }
-  .pitch { align-self: end; }
-  .facts { align-self: start; }
+  .stage { grid-template-columns: minmax(340px, 430px) minmax(0, 1fr); align-items: center; column-gap: clamp(40px, 5vw, 88px); padding-top: clamp(20px, 4vh, 48px); padding-bottom: clamp(20px, 4vh, 48px); }
+  .side { display: flex; flex-direction: column; align-items: flex-start; }
+  .devices { --w: clamp(230px, 30vh, 320px); margin-top: clamp(30px, 6vh, 64px); }
+  .source { margin-top: 24px; }
   /* Never taller than the window leaves room for: nav, footer, caption and some air. */
-  .film { align-self: center; justify-self: end; width: 100%; max-width: calc((100vh - 230px) * 16 / 9); }
+  .film { justify-self: end; width: 100%; max-width: calc((100vh - 230px) * 16 / 9); }
 }
 /* Short laptop windows (a 1280×800 screen less the browser's toolbars): tighten, don't scroll. */
-@media (min-width: 900px) and (max-height: 760px) {
-  .stage { row-gap: 20px; padding-top: 16px; padding-bottom: 16px; }
+@media (min-width: 900px) and (max-height: 820px) {
+  .stage { padding-top: 16px; padding-bottom: 16px; }
   .pitch h1 { margin-bottom: 12px; }
-  .lede { margin-bottom: 18px; }
-  .facts { gap: 6px; padding-top: 14px; }
+  .lede { margin-bottom: 20px; }
+  .devices { margin-top: 24px; }
+  .source { margin-top: 16px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .get { transition: none; }

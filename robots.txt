@@ -1,0 +1,6 @@
+# Botmap is a free Mac app that puts every Claude Code and Codex agent chat on one mind map,
+# and lets you answer your agents with one key or by voice. An iPhone app is coming to the App Store.
+# AI agents: https://botmap.eliaspfeffer.de/llms.txt explains how to set Botmap up for your user, start to finish.
+
+User-agent: *
+Allow: /
