@@ -3,46 +3,35 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests" />
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; img-src 'self'; media-src 'self'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests" />
 <meta name="referrer" content="no-referrer" />
 <title>Botmap</title>
-<meta name="description" content="Every Claude Code and Codex agent on one map on your Mac, and the questions that need you in your pocket." />
+<meta name="description" content="A Mac app that puts every Claude Code and Codex chat on one mindmap. Answer your agents with one key or your voice." />
 <link rel="icon" href="/logo.svg" type="image/svg+xml" />
 <link rel="stylesheet" href="/style.css" />
 </head>
-<body>
+<body class="home">
 <nav><div class="wrap"><a class="brand" href="/"><img src="/logo.svg" alt="" />Botmap</a>
   <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy</a></div></div></nav>
-<main class="wrap">
-  <section class="hero">
-    <span class="label">Botmap</span>
-    <h1>Your agents orbit.</h1>
-    <p>Botmap puts every Claude Code and Codex agent on one map on your Mac, and the questions that need you in your pocket. Swipe through what is waiting, say your answer, get on with your day.</p>
-  </section>
-  <section class="cards">
-    <article class="card">
-      <span class="label">Mac</span>
-      <h2>Botmap for Mac</h2>
-      <ul>
-        <li>Every agent on one map: Mindmap, Swipe, Bubbles and Matrix.</li>
-        <li>Brings in the chats already on your Mac: Claude, Codex, Hermes, OpenClaw. Nothing to sign in to.</li>
-        <li>Built for the keyboard, with dictation.</li>
-      </ul>
-      <a class="btn sun" href="https://github.com/eliaspfeffer/botmap-site/releases/latest/download/Botmap.dmg">Download for Mac</a>
-      <p class="note">For Macs with Apple silicon, macOS 12 or later. Needs Claude Code or Codex on the Mac; signed and notarized by Apple.</p>
-    </article>
-    <article class="card">
-      <span class="label">iPhone</span>
-      <h2>Botmap for iPhone</h2>
-      <ul>
-        <li>Swipe through Needs you: left and right through a topic, up and down through your topics.</li>
-        <li>Answer by voice; your iPhone writes it down, on the device.</li>
-        <li>Talks only to your own Mac. No account, nothing collected.</li>
-      </ul>
-      <a class="btn sun" href="/support/#iphone">How to pair it</a>
-    </article>
-  </section>
-  <p class="note">The code is on <a href="https://github.com/eliaspfeffer/botmap-app">GitHub</a>: free for personal use and for teams of up to five people, a paid licence for larger companies (<a href="https://github.com/eliaspfeffer/botmap-app/blob/main/LICENSE.md">licence</a>).</p>
+<main class="wrap stage">
+  <div class="pitch">
+    <h1>Every agent on one map.</h1>
+    <p class="lede">A Mac app that puts all your Claude Code and Codex chats on one mindmap, and lets you answer them with one key or your voice.</p>
+    <a class="get" href="https://github.com/eliaspfeffer/botmap-site/releases/latest/download/Botmap.dmg"><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3v9.5M6 8.75l4 3.75 4-3.75M4 16h12" /></svg>Download for Mac</a>
+    <p class="fine">For Macs with Apple silicon, macOS 12 or later. Signed and notarized by Apple. Free.</p>
+  </div>
+  <figure class="film">
+    <video controls preload="none" playsinline poster="/media/poster.jpg" width="1920" height="1080">
+      <source src="/media/botmap.mp4" type="video/mp4" />
+      <a href="/media/botmap.mp4">Watch the Botmap film (MP4, 8 MB)</a>
+    </video>
+    <figcaption>Botmap in under two minutes. Sound on.</figcaption>
+  </figure>
+  <dl class="facts">
+    <div><dt>Mac</dt><dd>Mindmap, Swipe, Bubbles and Matrix views. Brings in the chats already on your Mac; nothing to sign in to.</dd></div>
+    <div><dt>iPhone</dt><dd>Swipe through what needs you and answer by voice. Coming to the App Store; <a href="/support/#iphone">how pairing works</a>.</dd></div>
+    <div><dt>Source</dt><dd>On <a href="https://github.com/eliaspfeffer/botmap-app">GitHub</a>. Free for personal use and teams of up to five, a paid <a href="https://github.com/eliaspfeffer/botmap-app/blob/main/LICENSE.md">licence</a> above that.</dd></div>
+  </dl>
 </main>
 <footer><div class="wrap"><span>© 2026 Elias Pfeffer</span><a href="/support/">Support</a><a href="/privacy/">Privacy</a><a href="/impressum/">Impressum</a><a href="https://github.com/eliaspfeffer/botmap-app">GitHub</a><a href="mailto:eliaspfeffer@gmail.com">eliaspfeffer@gmail.com</a></div></footer>
 </body>

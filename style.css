@@ -1,15 +1,18 @@
 /* botmap.eliaspfeffer.de: the same dark, quiet look as the app, its orange for what matters. System fonts only:
-   the site loads nothing from anyone else. */
+   the site loads nothing from anyone else. No scripts, nothing that moves on its own. */
 :root {
-  --bg: #141414; --panel: #1a1a1a; --panel2: #202020; --line: #2c2c2c; --line2: #3a3a3a;
-  --text: #ececec; --dim: #9a9a9a; --faint: #6e6e6e; --sun: #f08a3c; --peach: #ffd2a8;
+  --bg: #141414; --line: #2c2c2c;
+  --text: #ececec; --soft: #c4c4c4; --dim: #9a9a9a; --faint: #858585; --sun: #f08a3c; --peach: #ffd2a8;
   --mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
   color-scheme: dark;
 }
 * { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
 body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.6 -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif; -webkit-font-smoothing: antialiased; }
-a { color: var(--peach); }
+::selection { background: rgba(240, 138, 60, .4); color: #fff; }
+a { color: var(--peach); text-underline-offset: .2em; text-decoration-thickness: 1px; }
+a:hover { color: #fff3e8; }
+:focus-visible { outline: 2px solid var(--peach); outline-offset: 3px; border-radius: 4px; }
 .wrap { max-width: 960px; margin: 0 auto; padding: 0 16px; }
 nav { border-bottom: 1px solid var(--line); }
 nav .wrap { display: flex; align-items: center; gap: 22px; height: 60px; }
@@ -19,23 +22,53 @@ nav .links { display: flex; gap: 18px; margin-left: auto; font-size: 14px; }
 nav .links a { color: var(--dim); text-decoration: none; }
 nav .links a:hover, nav .links a[aria-current] { color: var(--text); }
 .label { font: 500 11px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--dim); }
-h1 { font-size: clamp(36px, 7vw, 60px); line-height: 1.05; letter-spacing: -0.02em; margin: 18px 0 16px; }
+h1 { font-size: clamp(36px, 7vw, 60px); line-height: 1.05; letter-spacing: -0.02em; margin: 18px 0 16px; text-wrap: balance; }
 h2 { font-size: 24px; margin: 0 0 10px; letter-spacing: -0.01em; }
-.hero { padding: 72px 0 48px; }
-.hero p { max-width: 620px; color: var(--dim); font-size: 18px; margin: 0; }
-.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; padding-bottom: 64px; }
-.card { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 24px; }
-.card ul { margin: 12px 0 18px; padding-left: 18px; color: var(--dim); }
-.card li { margin: 4px 0; }
-.btn { display: inline-flex; align-items: center; height: 40px; padding: 0 16px; border-radius: 9px; font-weight: 600; font-size: 14px; text-decoration: none; border: 1px solid var(--line2); background: var(--panel2); color: var(--text); }
-.btn.sun { background: var(--sun); border-color: var(--sun); color: #1a1817; }
-.btn[aria-disabled] { opacity: .55; pointer-events: none; }
-.doc { padding: 56px 0 72px; max-width: 720px; }
+.doc { padding: 56px 16px 72px; max-width: 720px; }
 .doc h1 { font-size: clamp(32px, 6vw, 44px); }
 .doc h2 { font-size: 19px; margin-top: 32px; }
 .doc p, .doc li { color: #c9c9c9; }
 .doc .meta { color: var(--faint); font-size: 14px; }
-footer { border-top: 1px solid var(--line); padding: 24px 0 40px; color: var(--faint); font-size: 14px; }
-footer .wrap { display: flex; flex-wrap: wrap; gap: 18px; }
+footer { border-top: 1px solid var(--line); padding: 18px 0 22px; color: var(--faint); font-size: 14px; }
+footer .wrap { display: flex; flex-wrap: wrap; gap: 6px 18px; }
 footer a { color: var(--dim); text-decoration: none; }
-.note { margin: 12px 0 0; color: var(--faint); font-size: 13px; }
+footer a:hover { color: var(--text); }
+
+/* Landing page: one screen. The film is the picture; the words and the button sit beside it. */
+.home { min-height: 100vh; min-height: 100dvh; display: grid; grid-template-columns: minmax(0, 1fr); grid-template-rows: auto 1fr auto; }
+.home .wrap { max-width: 1600px; padding-left: clamp(16px, 2.5vw, 40px); padding-right: clamp(16px, 2.5vw, 40px); }
+.stage { display: grid; grid-template-columns: minmax(0, 1fr); grid-template-areas: "pitch" "film" "facts"; gap: 24px; align-content: center; align-content: safe center; padding-top: 24px; padding-bottom: 32px; }
+.pitch { grid-area: pitch; }
+.pitch h1 { font-size: clamp(38px, 3vw + 14px, 62px); font-weight: 700; line-height: 1.02; letter-spacing: -0.035em; margin: 0 0 16px; }
+.lede { margin: 0 0 26px; max-width: 34ch; color: var(--soft); font-size: 18px; line-height: 1.5; }
+.get { display: inline-flex; align-items: center; gap: 10px; height: 54px; padding: 0 26px 0 21px; border-radius: 12px; background: var(--sun); color: #1c140e; font-size: 17px; font-weight: 600; text-decoration: none; box-shadow: inset 0 1px 0 rgba(255, 255, 255, .3), 0 1px 2px rgba(0, 0, 0, .5), 0 10px 24px -12px rgba(240, 138, 60, .6); transition: background-color .15s ease-out, transform .15s ease-out; }
+.get:hover { background: #f59a54; color: #1c140e; }
+.get:active { background: #e47c2f; transform: translateY(1px); }
+.get:focus-visible { border-radius: 12px; }
+.get svg { flex: none; }
+.fine { margin: 12px 0 0; max-width: 36ch; color: var(--dim); font-size: 13px; line-height: 1.5; }
+.film { grid-area: film; margin: 0; }
+.film video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; border-radius: 12px; background: #efebe5; box-shadow: 0 0 0 1px rgba(255, 255, 255, .07), 0 30px 60px -30px rgba(0, 0, 0, .9); }
+.film figcaption { margin-top: 10px; color: var(--dim); font-size: 13px; }
+.facts { grid-area: facts; display: grid; gap: 10px; margin: 0; padding-top: 20px; border-top: 1px solid var(--line); font-size: 14px; line-height: 1.5; }
+.facts div { display: grid; grid-template-columns: 58px minmax(0, 1fr); gap: 12px; }
+.facts dt { font-weight: 600; }
+.facts dd { margin: 0; color: var(--dim); }
+@media (min-width: 900px) {
+  .stage { grid-template-columns: minmax(330px, 430px) minmax(0, 1fr); grid-template-areas: "pitch film" "facts film"; column-gap: clamp(40px, 5vw, 88px); row-gap: 36px; padding-top: clamp(20px, 4vh, 48px); padding-bottom: clamp(20px, 4vh, 48px); }
+  .pitch { align-self: end; }
+  .facts { align-self: start; }
+  /* Never taller than the window leaves room for: nav, footer, caption and some air. */
+  .film { align-self: center; justify-self: end; width: 100%; max-width: calc((100vh - 230px) * 16 / 9); }
+}
+/* Short laptop windows (a 1280×800 screen less the browser's toolbars): tighten, don't scroll. */
+@media (min-width: 900px) and (max-height: 760px) {
+  .stage { row-gap: 20px; padding-top: 16px; padding-bottom: 16px; }
+  .pitch h1 { margin-bottom: 12px; }
+  .lede { margin-bottom: 18px; }
+  .facts { gap: 6px; padding-top: 14px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .get { transition: none; }
+  .get:active { transform: none; }
+}
