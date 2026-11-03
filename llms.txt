@@ -52,7 +52,7 @@ On the map, with the pointer over a chat where it applies:
 
 ## Help and links
 
-- Support: eliaspfeffer@gmail.com, https://botmap.eliaspfeffer.de/support/
-- Source: https://github.com/eliaspfeffer/botmap-app
-- Licence: https://github.com/eliaspfeffer/botmap-app/blob/main/LICENSE.md (free for personal use and teams of up to five people; larger organizations need a paid licence)
-- Privacy: https://botmap.eliaspfeffer.de/privacy/
+- Support: eliaspfeffer@gmail.com, https://trybotmap.com/support/
+- Source: https://github.com/eliaspfeffer/botmap
+- Licence: https://github.com/eliaspfeffer/botmap/blob/main/LICENSE.md (free for personal use and teams of up to five people; larger organizations need a paid licence)
+- Privacy: https://trybotmap.com/privacy/
