@@ -11,9 +11,23 @@
 
 ## Install
 
-1. Download https://github.com/eliaspfeffer/botmap-site/releases/latest/download/Botmap.dmg (this URL always serves the newest release).
+With Node.js 18+ installed, run this command in the terminal:
+
+```sh
+npx --yes --allow-remote=all https://trybotmap.com/install.tgz
+```
+
+It verifies the latest stable Mac ZIP's checksum, Developer ID, bundle identity,
+Apple notarization and startup, then installs and opens `~/Applications/Botmap.app`.
+Existing installations are verified and opened without replacement. `--no-open`
+installs without opening Botmap. The installer never changes chats or drafts.
+Do not use the unrelated `botmap` package from npm.
+
+Alternatively, install without Node.js:
+
+1. Download https://github.com/eliaspfeffer/botmap-site/releases/latest/download/Botmap.dmg (the newest stable release).
 2. Open the DMG and drag Botmap to Applications.
-3. Open Botmap from Applications. It is signed and notarized by Apple, so macOS shows no warning.
+3. Open Botmap from Applications. It is signed and notarized by Apple; macOS may ask you to confirm the first launch.
 
 Updates: from version 2.1, Botmap checks this repository's latest release by itself; when a newer one is out, the sidebar shows "Update to …", which downloads it, checks Apple's signature and notarization, and restarts Botmap.
 

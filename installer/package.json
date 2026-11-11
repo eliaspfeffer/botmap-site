@@ -1,0 +1,11 @@
+{
+  "name": "botmap-installer",
+  "version": "1.0.0",
+  "description": "Install the signed Botmap app for Mac from trybotmap.com.",
+  "type": "module",
+  "bin": { "botmap": "cli.mjs" },
+  "files": ["cli.mjs", "README.md"],
+  "engines": { "node": ">=18" },
+  "license": "MIT",
+  "repository": "github:eliaspfeffer/botmap-site"
+}
