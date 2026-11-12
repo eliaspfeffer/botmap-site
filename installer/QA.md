@@ -22,3 +22,12 @@ The automatic GUI launch is covered by the command-level test, not a second phys
 ## Production verification
 
 GitHub Pages successfully deployed source commit `88c1f01`. The public `install.tgz` returns HTTP 200 and matches the reviewed tarball exactly (SHA-256 `6439dde6b42ee2487744c02b99ed195307f23ef971fce725a3134473afc057a3`). The actual public-domain npx command completed a second fresh installation of stable v2.3.49 with `--no-open`, including the real signature, notarization and executable checks. An actual repeat install returned the existing path without a download and preserved the installed package bytes. The production page’s Copy action displayed its success message in the assigned ego window. The test app and anonymous npm caches were removed afterward; the live user installation was not replaced or restarted.
+
+## 12 November 2026 — installer 1.0.2 and Botmap 2.3.55
+
+- 14 tests pass, including newest-version selection, rejected legacy copies, and refusal to overwrite an unverified destination.
+- The actual versioned public npx command with `--no-open` selected the verified Botmap v2 installation despite a separate Gatekeeper-rejected legacy `Botmap.app`. Both copies and the live user's data were preserved.
+- Public stable 2.3.55 was downloaded into temporary directories through the real installer, verified, started in Node mode, and installed. A repeat install preserved the application and a separate fixture data file. The installer `home` option isolated these tests; the process HOME was not changed.
+- The exact signed/notarized app also passed a physical fresh GUI first launch, ego selection in onboarding, and native-file-dialog JSON restore. The imported test node stayed manual and no agent started. The isolated GUI was closed and its test store removed.
+- The versioned filename avoids npm reusing a cached older installer. `install.tgz` remains a compatibility alias. The production versioned tarball matches the reviewed source (SHA-256 `df6dfe4b4f466bdd93d2c97d4a5832e7f740e713f0ff46be5f4577efa5d8297b`).
+- The public page shows the versioned command. At 320px the command and Copy control remain inside the viewport without horizontal overflow; its screenshot was inspected. Browser device emulation was cleared and the assigned result Space retained.
