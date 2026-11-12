@@ -46,13 +46,18 @@ export function verifyApp(app, run = runCommand) {
 export async function install({home = os.homedir(), run = runCommand, request = fetch, log = console.log, open = true} = {}) {
   const options = {encoding: 'utf8', timeout: 120_000, stdio: ['ignore', 'pipe', 'pipe']};
   const target = path.join(home, 'Applications', 'Botmap.app');
-  const existing = [target, path.join(home, 'Applications', 'Botmap v2.app'), '/Applications/Botmap.app'].find(p => fs.existsSync(p));
+  const verified=[];let targetError;
+  for(const app of [target,path.join(home,'Applications','Botmap v2.app'),'/Applications/Botmap.app'].filter(p=>fs.existsSync(p))) {
+    try {verifyApp(app,run);const version=run('/usr/libexec/PlistBuddy',['-c','Print :CFBundleShortVersionString',path.join(app,'Contents/Info.plist')],options).trim();if(!/^\d+(?:\.\d+){1,3}$/.test(version))throw Error('Invalid app version.');verified.push({app,version});}
+    catch(error){if(app===target)targetError=error;}
+  }
+  const existing=verified.sort((a,b)=>b.version.localeCompare(a.version,undefined,{numeric:true}))[0]?.app;
   if (existing) {
-    verifyApp(existing, run);
     log(`Botmap is already installed at ${existing}. Use its in-app updater for updates.`);
     if (open) run('/usr/bin/open', [existing], options);
     return existing;
   }
+  if(targetError)throw Error(`The existing app at ${target} could not be verified and was not replaced. ${targetError.message}`);
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'botmap-install-'));
   let stage;
   try {

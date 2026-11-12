@@ -36,7 +36,7 @@ function fixture(t, {body = bytes, identity = 'TeamIdentifier=WZJ53885PB', fail,
     if (file.endsWith('/' + fail)) throw Error('test refused ' + fail);
     if (file.endsWith('/tar')) fs.mkdirSync(path.join(args.at(-1), 'Botmap.app'), {recursive: true});
     if (file.endsWith('/codesign') && args[0] === '-dv') return identity;
-    if (file.endsWith('/PlistBuddy')) return 'com.eliaspfeffer.botmap\n';
+    if (file.endsWith('/PlistBuddy')) return args[1].includes('CFBundleShortVersionString')?'2.3.49\n':'com.eliaspfeffer.botmap\n';
     if (file.endsWith('/MacOS/Botmap')) {
       if (race) { fs.mkdirSync(target); fs.writeFileSync(path.join(target, 'keep'), 'another installer'); }
       return 'v43.8.6\n';
@@ -102,4 +102,18 @@ test('wrong bundle identity is rejected even with the correct developer', () => 
 test('GitHub failures leave no install', async t => {
   const f = fixture(t); await assert.rejects(install({...f, request: async () => new Response('', {status: 403})}), /GitHub.*403/);
   assert(!fs.existsSync(f.target));
+});
+
+test('opens the newest verified installation and preserves every existing copy',async t=>{
+ const f=fixture(t),newer=path.join(f.home,'Applications/Botmap v2.app');for(const app of [f.target,newer]){fs.mkdirSync(app,{recursive:true});fs.writeFileSync(path.join(app,'keep'),'unchanged');}
+ const run=(file,args,options)=>file.endsWith('/PlistBuddy')&&args[1].includes('CFBundleShortVersionString')?(args.at(-1).includes('Botmap v2.app')?'2.3.55':'2.3.49'):f.run(file,args,options);
+ assert.equal(await install({...f,run,request:()=>{throw Error('must not download');}}),newer);for(const app of [f.target,newer])assert.equal(fs.readFileSync(path.join(app,'keep'),'utf8'),'unchanged');
+});
+test('an unverified legacy copy cannot block a verified current installation',async t=>{
+ const f=fixture(t),current=path.join(f.home,'Applications/Botmap v2.app');for(const app of [f.target,current])fs.mkdirSync(app,{recursive:true});fs.writeFileSync(path.join(f.target,'keep'),'old app');
+ const run=(file,args,options)=>{if(file.endsWith('/spctl')&&args.at(-1)===f.target)throw Error('legacy app rejected');return f.run(file,args,options);};
+ assert.equal(await install({...f,run,open:false,request:()=>{throw Error('must not download');}}),current);assert.equal(fs.readFileSync(path.join(f.target,'keep'),'utf8'),'old app');
+});
+test('an unverified occupied destination is never overwritten or launched',async t=>{
+ const f=fixture(t,{fail:'spctl'});fs.mkdirSync(f.target,{recursive:true});fs.writeFileSync(path.join(f.target,'keep'),'old app');await assert.rejects(install({...f,request:()=>{throw Error('must not download');}}),/was not replaced/);assert.equal(fs.readFileSync(path.join(f.target,'keep'),'utf8'),'old app');assert(!f.calls.some(([file])=>file.endsWith('/open')));
 });

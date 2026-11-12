@@ -16,7 +16,7 @@ The explicit `--allow-remote=all` flag allows this URL installation on npm 12,
 which blocks remote tarballs by default ([npm documentation](https://docs.npmjs.com/cli/using-npm/config/#allow-remote)).
 It applies only to this command and does not change npm settings.
 
-An existing installation is verified and opened, rather than replaced. Use
+When several installations exist, the newest fully verified version is opened. Older or unverified copies are left untouched. An existing installation is never replaced. Use
 Botmap's updater to update it. Your chats, credentials, drafts and browser tabs
 are never modified by the installer. On unsupported platforms it exits without
 downloading anything.
@@ -29,7 +29,7 @@ The `botmap` package on npm is unrelated; use the complete command above.
 
 Run `node --test installer/test.mjs`. Pack with
 `npm pack ./installer --pack-destination /tmp`, then copy the resulting
-`botmap-installer-1.0.0.tgz` to `install.tgz` at the site root.
+`botmap-installer-1.0.1.tgz` to `install.tgz` at the site root.
 Keep the package version and tarball in sync when changing the installer.
 
 The installer source is MIT licensed, copyright 2026 Elias Pfeffer. Permission
