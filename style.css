@@ -70,3 +70,6 @@ footer a:hover { color: var(--text); }
   .get { transition: none; }
   .get:active { transform: none; }
 }
+
+/* Keep the hosted checkout link readable on narrow screens. */
+#subscribe { max-width: 100%; padding: 12px 24px; line-height: 1.4; }

@@ -68,5 +68,6 @@ On the map, with the pointer over a chat where it applies:
 
 - Support: eliaspfeffer@gmail.com, https://trybotmap.com/support/
 - Source: https://github.com/eliaspfeffer/botmap
-- Licence: https://github.com/eliaspfeffer/botmap/blob/main/LICENSE.md (free for personal use and teams of up to five people; larger organizations need a paid licence)
+- Licence: https://trybotmap.com/license/ (free for personal use and teams of up to five people; USD 50/month total for larger organizations, regardless of team size)
+- Source licence: https://github.com/eliaspfeffer/botmap/blob/main/LICENSE.md
 - Privacy: https://trybotmap.com/privacy/
