@@ -105,7 +105,7 @@ export async function install({home = os.homedir(), run = runCommand, request = 
 async function main() {
   const args = process.argv.slice(2);
   if (args.includes('--help') || args.includes('-h')) {
-    console.log('Install Botmap for Apple silicon Mac (macOS 12+, Node.js 18+).\n\n  npx --yes --allow-remote=all https://trybotmap.com/install.tgz\n\n--no-open  Install without launching the app.\n\nDownloads the latest stable signed release. Existing installations and user data are preserved.');
+    console.log('Install Botmap for Apple silicon Mac (macOS 12+, Node.js 18+).\n\n  npx --yes --allow-remote=all https://trybotmap.com/install-v1.0.2.tgz\n\n--no-open  Install without launching the app.\n\nDownloads the latest stable signed release. Existing installations and user data are preserved.');
     return;
   }
   if (args.some(a => a !== '--no-open')) throw Error('Unknown argument. Use --help for usage.');

@@ -1,7 +1,7 @@
 # Install Botmap from your terminal
 
 ```sh
-npx --yes --allow-remote=all https://trybotmap.com/install.tgz
+npx --yes --allow-remote=all https://trybotmap.com/install-v1.0.2.tgz
 ```
 
 Requires an **Apple silicon Mac, macOS 12+ and Node.js 18+**. No npm account,
@@ -29,8 +29,8 @@ The `botmap` package on npm is unrelated; use the complete command above.
 
 Run `node --test installer/test.mjs`. Pack with
 `npm pack ./installer --pack-destination /tmp`, then copy the resulting
-`botmap-installer-1.0.1.tgz` to `install.tgz` at the site root.
-Keep the package version and tarball in sync when changing the installer.
+`botmap-installer-1.0.2.tgz` to `install.tgz` at the site root.
+Copy it to the versioned `install-v1.0.2.tgz` URL used by the website and keep `install.tgz` as a compatibility alias. Bump the package version and public URL together for installer changes, so npm cannot reuse an older cached package.
 
 The installer source is MIT licensed, copyright 2026 Elias Pfeffer. Permission
 is hereby granted, free of charge, to any person obtaining a copy of this

@@ -6,7 +6,7 @@ as they are (no build). Botmap for Mac downloads are this repo's Releases. There
 Install directly from a terminal on Apple silicon Mac (macOS 12+, Node.js 18+):
 
 ```sh
-npx --yes --allow-remote=all https://trybotmap.com/install.tgz
+npx --yes --allow-remote=all https://trybotmap.com/install-v1.0.2.tgz
 ```
 
 See [installer/README.md](installer/README.md) for checks, behavior and packaging.
