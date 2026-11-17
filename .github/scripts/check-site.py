@@ -53,6 +53,11 @@ assert len(urls) == len(set(urls))
 assert set(urls) == {ORIGIN + route for route in paths}, "Sitemap must match public pages"
 assert "Sitemap: " + ORIGIN + "/sitemap.xml" in (ROOT / "robots.txt").read_text()
 assert "Disallow:" not in (ROOT / "robots.txt").read_text()
+# Public ownership proofs must stay deployed while these search-console owners are active.
+google_proof = "googlea7138364f93f69ce.html"
+assert (ROOT / google_proof).read_text().strip() == "google-site-verification: " + google_proof
+bing_proof = ElementTree.parse(ROOT / "BingSiteAuth.xml").getroot()
+assert bing_proof.tag == "users" and bing_proof.findtext("user") == "4865810241C6F33DCA19E44E5EB15705"
 assert len({doc.title for doc in docs.values()}) == len(docs), "Duplicate title"
 assert len({doc.meta("description") for doc in docs.values()}) == len(docs)
 links = 0
