@@ -1,5 +1,5 @@
 /* trybotmap.com: the same dark, quiet look as the app, its orange for what matters. System fonts only:
-   the site loads nothing from anyone else. No scripts, nothing that moves on its own. */
+   the site loads nothing from anyone else. The film plays only when requested. */
 :root {
   --bg: #141414; --line: #2c2c2c;
   --text: #ececec; --soft: #c4c4c4; --dim: #9a9a9a; --faint: #858585; --sun: #f08a3c; --peach: #ffd2a8;
@@ -34,10 +34,10 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 6px 18px; }
 footer a { color: var(--dim); text-decoration: none; }
 footer a:hover { color: var(--text); }
 
-/* The homepage keeps one pitch, one download and the film. */
+/* Keep the download and film together before the product details. */
 .home { min-height: 100vh; min-height: 100dvh; display: grid; grid-template-rows: auto 1fr auto; }
 .home .wrap { width: 100%; max-width: 1280px; padding-left: clamp(20px, 3vw, 40px); padding-right: clamp(20px, 3vw, 40px); }
-.stage { display: grid; align-content: center; align-items: center; gap: 40px; padding-top: 48px; padding-bottom: 56px; }
+.stage { display: grid; align-content: center; align-items: center; gap: 40px; min-height: calc(100svh - 60px); padding-top: 48px; padding-bottom: 56px; }
 .pitch h1 { max-width: 14ch; font-size: clamp(40px, 4vw, 60px); font-weight: 700; line-height: 1.06; letter-spacing: -0.035em; margin: 0 0 20px; text-wrap: balance; }
 .hero-question { display: block; margin-bottom: 18px; color: var(--soft); font-size: 20px; font-weight: 500; letter-spacing: -0.01em; line-height: 1.3; }
 .accent { color: var(--sun); }
@@ -60,6 +60,18 @@ footer a:hover { color: var(--text); }
 .film video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; border-radius: 10px; background: #efebe5; }
 .film figcaption { margin-top: 10px; color: var(--dim); font-size: 13px; }
 .film video a { color: #1c140e; }
+.overview { padding-top: 24px; padding-bottom: 72px; }
+.overview section { max-width: 70ch; margin-bottom: 48px; }
+.overview section:last-child { margin-bottom: 0; }
+.overview h2 { font-size: clamp(24px, 3vw, 32px); line-height: 1.2; text-wrap: balance; }
+.overview h3 { margin: 28px 0 8px; font-size: 18px; line-height: 1.4; }
+.overview p, .overview li { color: var(--soft); }
+.overview p { margin: 12px 0 0; }
+.overview li { margin: 12px 0; }
+.overview strong { color: var(--text); }
+.doc code { font-family: var(--mono); font-size: .875em; overflow-wrap: anywhere; }
+.doc pre { white-space: pre-wrap; overflow-wrap: anywhere; padding: 16px; border: 1px solid var(--line); border-radius: 7px; }
+.doc h2, .overview h2 { scroll-margin-top: 24px; }
 @media (min-width: 900px) {
   .stage { grid-template-columns: minmax(320px, .8fr) minmax(0, 1.2fr); gap: clamp(36px, 5vw, 72px); }
 }

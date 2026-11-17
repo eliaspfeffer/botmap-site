@@ -1,6 +1,17 @@
 # Botmap
 
-> Botmap is a free Mac app that puts every Claude Code and Codex agent chat on one mind map, with four views of the same chats: Mindmap, Swipe, Bubbles and Matrix. It imports the chats already on the Mac, runs the agents through their own command lines on the plan the user already has, and lets the user answer them with one key or by voice. A companion iPhone app (swipe through what needs you, answer by voice, call your agent) is in Apple's review and coming to the App Store. This file tells an AI agent how to set Botmap up for its user, from download to a paired iPhone.
+> Botmap is a source-available Mac app that puts every Claude Code and Codex agent chat on one mind map, with four views of the same chats: Mindmap, Swipe, Bubbles and Matrix. It imports the chats already on the Mac, runs the agents through their own command lines on the plan the user already has, and lets the user answer them with one key or by voice. An iPhone companion connects to your own Mac. See the support page for pairing instructions; this website does not currently publish an App Store download link. This file tells an AI agent how to set Botmap up for its user, from download to a paired iPhone.
+
+## Product facts
+
+- Official site: https://trybotmap.com/
+- Free for personal use and organizations with up to five people. Larger organizations need a USD 50 monthly license for the whole organization. AI subscriptions and API charges are separate.
+- Source-available under the Botmap License, not open source.
+- Your map and working files stay on your Mac; AI requests go to your configured providers. Optional dictation and GPT Live use OpenAI. Local storage does not mean that AI content never leaves your device.
+- Mac setup and support: https://trybotmap.com/support/
+- Licensing: https://trybotmap.com/license/
+- Privacy: https://trybotmap.com/privacy/
+- Sitemap: https://trybotmap.com/sitemap.xml
 
 ## What you need
 
@@ -14,7 +25,7 @@
 With Node.js 18+ installed, run this command in the terminal:
 
 ```sh
-npx --yes --allow-remote=all https://trybotmap.com/install.tgz
+npx --yes --allow-remote=all https://trybotmap.com/install-v1.0.2.tgz
 ```
 
 It verifies the latest stable Mac ZIP's checksum, Developer ID, bundle identity,
@@ -62,7 +73,7 @@ On the map, with the pointer over a chat where it applies:
 
 1. On the Mac: Settings › Your iPhone, turn it on. It uses Tailscale serve, so both devices need Tailscale signed in to the same account.
 2. On the iPhone: open Botmap and tap "Scan the code", then scan the code the Mac shows (or copy the link on the Mac and tap "Paste the link").
-3. The iPhone app is still in Apple's review; until it is in the App Store there is nothing to install on the iPhone.
+3. Follow https://trybotmap.com/support/#iphone for pairing help. Do not substitute an unrelated App Store app.
 
 ## Help and links
 

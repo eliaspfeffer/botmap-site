@@ -5,18 +5,55 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests" />
 <meta name="referrer" content="no-referrer" />
-<title>Support: Botmap</title>
-<meta name="description" content="Help with Botmap for Mac and Botmap for iPhone." />
+<title>Botmap Setup: Install, Import Chats &amp; Get Help</title>
+<meta name="description" content="Set up Botmap for Mac with Claude Code and Codex. Find installation steps, chat import help, voice requirements and iPhone pairing support." />
+<link rel="canonical" href="https://trybotmap.com/support/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Botmap" />
+<meta property="og:url" content="https://trybotmap.com/support/" />
+<meta property="og:title" content="Botmap Setup: Install, Import Chats &amp; Get Help" />
+<meta property="og:description" content="Set up Botmap for Mac with Claude Code and Codex. Find installation steps, chat import help, voice requirements and iPhone pairing support." />
+<meta property="og:image" content="https://trybotmap.com/media/botmap-link-20261111-simple.jpg" />
+<meta property="og:image:alt" content="A Botmap project mindmap connecting Claude Code, Codex and Research chats." />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Botmap Setup: Install, Import Chats &amp; Get Help" />
+<meta name="twitter:description" content="Set up Botmap for Mac with Claude Code and Codex. Find installation steps, chat import help, voice requirements and iPhone pairing support." />
+<meta name="twitter:image" content="https://trybotmap.com/media/botmap-link-20261111-simple.jpg" />
+<meta name="twitter:image:alt" content="A Botmap project mindmap connecting Claude Code, Codex and Research chats." />
 <link rel="icon" href="/logo.svg" type="image/svg+xml" />
-<link rel="stylesheet" href="/style.css" />
+<link rel="stylesheet" href="/style.css?v=20261117-seo" />
 </head>
 <body>
 <nav><div class="wrap"><a class="brand" href="/"><img src="/logo.svg" alt="" />Botmap</a>
   <div class="links"><a href="/support/" aria-current="page">Support</a><a href="/privacy/">Privacy</a></div></div></nav>
 <main class="wrap doc">
   <span class="label">Support</span>
-  <h1>Help with Botmap</h1>
+  <h1>Set up Botmap on your Mac</h1>
+  <p>Botmap organizes Claude Code and Codex chats by project in a mind map. Install the Mac app, connect your existing agents and import the conversations you want to work with.</p>
   <p>Write to <a href="mailto:eliaspfeffer@gmail.com">eliaspfeffer@gmail.com</a>. You get an answer from the person who builds it.</p>
+  <h2 id="requirements">What do I need?</h2>
+  <ul>
+    <li>An Apple silicon Mac (M1 or newer) with macOS 12 or later. The current Mac download does not support Intel Macs, Windows or Linux.</li>
+    <li>Claude Code or the Codex CLI installed and signed in on that Mac. Your provider's subscription or API charges are separate from Botmap.</li>
+    <li>Node.js 18 or later only if you use the terminal installer.</li>
+    <li>Your own OpenAI API key if you want optional dictation or GPT Live.</li>
+  </ul>
+  <h2 id="mac">How do I install Botmap for Mac?</h2>
+  <ol>
+    <li><a href="https://github.com/eliaspfeffer/botmap-site/releases/latest/download/Botmap.dmg">Download the latest Botmap for Mac</a> from the official release.</li>
+    <li>Open the DMG and drag Botmap to Applications.</li>
+    <li>Open Botmap from Applications. macOS may ask you to confirm the first launch. Do not disable macOS security checks.</li>
+  </ol>
+  <p>You can also install with Node.js 18 or later:</p>
+  <pre><code>npx --yes --allow-remote=all https://trybotmap.com/install-v1.0.2.tgz</code></pre>
+  <p>The terminal installer checks the release checksum, developer signature, app identity and Apple notarization before installing. It leaves existing installations in place and opens the newest verified version it finds. Use Botmap's updater for an existing installation.</p>
+  <p>Use the complete command above. The unrelated <code>botmap</code> package on npm is not this app. You can <a href="https://github.com/eliaspfeffer/botmap-site/blob/main/installer/README.md">read the installer documentation and source</a> before running it.</p>
+  <h2 id="import">How do I bring in my Claude Code and Codex chats?</h2>
+  <p>Open Import on the map to bring in existing chats from your Mac. Keep Claude Code or Codex installed and signed in. Organize the imported chats under projects and topics, then open a node to read its conversation and send a reply.</p>
+  <h2 id="voice">How do voice replies work?</h2>
+  <p>Add your own OpenAI API key in Botmap's Settings to use Mac dictation or GPT Live. These features send voice content to OpenAI and may incur API charges. You can use typed replies without adding that key.</p>
+  <h2 id="pricing">Do I need a paid Botmap license?</h2>
+  <p>Personal use and organizations of up to five people are free. Larger organizations need one USD 50 monthly subscription for the whole organization. Read the <a href="/license/">commercial license terms</a> before subscribing.</p>
   <h2 id="iphone">Pair your iPhone</h2>
   <ol>
     <li>On the Mac, open Botmap, then Settings, then “Your iPhone”, and turn it on.</li>
@@ -30,7 +67,7 @@
   <h2>Pair with a different Mac</h2>
   <p>Tap the <b>i</b> at the top of the app, then “Pair with another Mac”, and scan the new Mac’s code. The old key is removed from the iPhone.</p>
   <h2>Privacy</h2>
-  <p>The app collects nothing. The details are in the <a href="/privacy/">privacy policy</a>.</p>
+  <p>Read about local storage, iPhone pairing and AI provider connections in the <a href="/privacy/">privacy policy</a>.</p>
 </main>
 <footer><div class="wrap"><span>© 2026 Elias Pfeffer</span><a href="/support/">Support</a><a href="/privacy/">Privacy</a><a href="/impressum/">Impressum</a><a href="https://github.com/eliaspfeffer/botmap">GitHub</a><a href="mailto:eliaspfeffer@gmail.com">eliaspfeffer@gmail.com</a></div></footer>
 </body>
