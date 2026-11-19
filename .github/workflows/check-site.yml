@@ -13,4 +13,4 @@ jobs:
         with:
           persist-credentials: false
       - run: python3 .github/scripts/check-site.py
-      - run: node --test .github/scripts/download-count.test.mjs
+      - run: node --test .github/scripts/*.test.mjs
