@@ -3,22 +3,18 @@ import { githubPages, installerAssets } from './github-data.mjs';
 // GitHub stargazer timestamps collected at the start of daily tracking (2026-11-19).
 const earlierStars = [{"starred_at": "2026-11-05T22:00:12Z"}, {"starred_at": "2026-11-17T11:48:03Z"}, {"starred_at": "2026-11-18T19:26:20Z"}];
 
-const DAY = 86_400_000;
 export const format = new Intl.NumberFormat('en', { maximumFractionDigits: 1 });
 const dateFormat = new Intl.DateTimeFormat('en', { month: 'short', day: 'numeric', timeZone: 'UTC' });
 
 export function observations(rows) {
   if (!Array.isArray(rows)) throw new Error('Invalid snapshot history');
-  const samples = rows.map(({ at, downloads, stars }) => ({ at: Date.parse(at), downloads, stars }));
-  return samples.map((sample, i) => {
-    const previous = samples[i - 1];
-    if (!Number.isFinite(sample.at) || (previous && sample.at <= previous.at) ||
-        ![sample.downloads, sample.stars].every(n => Number.isSafeInteger(n) && n >= 0)) {
+  return rows.map(({ at, stars }, i) => {
+    const timestamp = Date.parse(at);
+    if (!Number.isFinite(timestamp) || (i && timestamp <= Date.parse(rows[i - 1].at)) ||
+        !Number.isSafeInteger(stars) || stars < 0) {
       throw new Error('Invalid snapshot');
     }
-    const rate = previous && sample.downloads >= previous.downloads
-      ? (sample.downloads - previous.downloads) * DAY / (sample.at - previous.at) : null;
-    return { ...sample, rate };
+    return { at: timestamp, stars };
   });
 }
 
@@ -45,20 +41,19 @@ export function starSeries(stargazers, samples) {
 }
 
 export function plotData(samples, key) {
-  const values = samples.filter(sample => sample[key] !== null);
-  const max = Math.max(1, Math.ceil(values.reduce((largest, point) => Math.max(largest, point[key]), 0)));
+  const max = Math.max(1, Math.ceil(samples.reduce((largest, point) => Math.max(largest, point[key]), 0)));
   const start = samples[0].at;
   const elapsed = samples.at(-1).at - start;
   return {
     max,
-    points: values.map(sample => ({
+    points: samples.map(sample => ({
       x: elapsed ? 43 + (sample.at - start) * 363 / elapsed : 224,
       y: 12 + 82 * (1 - sample[key] / max),
     })),
   };
 }
 
-function draw(svg, samples, key, step = false) {
+function draw(svg, samples, key) {
   const { max, points } = plotData(samples, key);
   function mark(tag, attrs, value) {
     const element = document.createElementNS(svg.namespaceURI, tag);
@@ -71,8 +66,8 @@ function draw(svg, samples, key, step = false) {
     mark('line', { x1: 37, x2: 413, y1: y, y2: y });
     mark('text', { x: 31, y: y + 4, 'text-anchor': 'end' }, label);
   }
-  if (key !== 'rate' && points.length > 1) {
-    const line = points.flatMap(({ x, y }, i) => step && i ? [`${x},${points[i - 1].y}`, `${x},${y}`] : [`${x},${y}`]);
+  if (points.length > 1) {
+    const line = points.flatMap(({ x, y }, i) => i ? [`${x},${points[i - 1].y}`, `${x},${y}`] : [`${x},${y}`]);
     mark('polyline', { points: line.join(' ') });
   }
   if (key !== 'downloads') for (const { x, y } of points) mark('circle', { cx: x, cy: y, r: 3 });
@@ -90,16 +85,14 @@ async function showReleaseTotals(section) {
     if (assets.length) document.getElementById('download-count').textContent = format.format(total);
     const points = releaseSeries(assets, Date.now());
     if (!points.length) throw new Error('No installer data');
-    draw(section.querySelector('[data-plot="downloads"]'), points, 'downloads', true);
+    draw(section.querySelector('[data-plot="downloads"]'), points, 'downloads');
     section.querySelector('[data-value="downloads"]').textContent = format.format(total);
-    section.querySelector('[data-release-status]').hidden = true;
   } catch {
-    section.querySelector('[data-release-status]').textContent = 'Installer totals are temporarily unavailable.';
+    // Keep the unavailable value if GitHub cannot provide totals.
   }
 }
 
 async function showMetrics(section) {
-  const status = section.querySelector('[role="status"]');
   try {
     const response = await fetch('https://api.github.com/repos/eliaspfeffer/botmap-site/contents/metrics-history.json?ref=metrics-history', {
       headers: { Accept: 'application/vnd.github.raw+json' }, credentials: 'omit',
@@ -110,27 +103,10 @@ async function showMetrics(section) {
     const latest = samples.at(-1);
     if (!latest) throw new Error('No snapshots yet');
 
-    draw(section.querySelector('[data-plot="stars"]'), starSeries(earlierStars, samples), 'stars', true);
+    draw(section.querySelector('[data-plot="stars"]'), starSeries(earlierStars, samples), 'stars');
     section.querySelector('[data-value="stars"]').textContent = format.format(latest.stars);
-    section.querySelector('[data-value="rate"]').textContent = latest.rate === null ? '—' : format.format(latest.rate);
-    if (samples.some(sample => sample.rate !== null)) {
-      draw(section.querySelector('[data-plot="rate"]'), samples, 'rate');
-      section.querySelector('[data-rate-empty]').hidden = true;
-    }
-    const start = dateFormat.format(samples[0].at);
-    const end = dateFormat.format(latest.at);
-    status.textContent = `Daily snapshots since ${start} UTC · latest ${end}`;
-    const table = section.querySelector('tbody');
-    for (const sample of samples.slice().reverse()) {
-      const row = table.insertRow();
-      const date = new Date(sample.at).toISOString().slice(0, 10);
-      for (const value of [date, format.format(sample.downloads), sample.rate === null ? '—' : format.format(sample.rate), format.format(sample.stars)]) {
-        row.insertCell().textContent = value;
-      }
-    }
-    section.querySelector('details').hidden = false;
   } catch {
-    status.textContent = 'GitHub activity data is temporarily unavailable.';
+    // Keep the unavailable value if GitHub cannot provide snapshots.
   }
 }
 

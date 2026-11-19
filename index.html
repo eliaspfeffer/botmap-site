@@ -24,7 +24,7 @@
 <meta name="twitter:image" content="https://trybotmap.com/media/botmap-link-20261111-simple.jpg" />
 <meta name="twitter:image:alt" content="A simple Botmap mindmap: one orange project node connects Claude Code, Codex and Research chats." />
 <link rel="icon" href="/logo.svg" type="image/svg+xml" />
-<link rel="stylesheet" href="/style.css?v=20261119-release-history" />
+<link rel="stylesheet" href="/style.css?v=20261119-compact-charts" />
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -134,37 +134,17 @@
   </figure>
 </div>
 <div class="wrap overview">
-  <section id="github-activity" aria-labelledby="activity-title">
-    <h2 id="activity-title">GitHub activity</h2>
-    <p role="status">Loading daily GitHub snapshots…</p>
+  <section id="github-activity" aria-label="GitHub activity">
     <div class="activity-plots">
-      <figure>
-        <figcaption>Mac downloads by release <strong data-value="downloads">—</strong></figcaption>
+      <figure aria-label="Cumulative Mac installer downloads grouped by upload date">
+        <figcaption>Downloads <strong data-value="downloads">—</strong></figcaption>
         <svg data-plot="downloads" viewBox="0 0 420 124" aria-hidden="true" hidden></svg>
-        <p data-release-status>Loading installer totals…</p>
-        <p class="activity-method">Cumulative downloads grouped by installer upload date. Each release includes downloads from its upload through today.</p>
       </figure>
       <figure>
-        <figcaption>Mac downloads per day <strong data-value="rate">—</strong></figcaption>
-        <svg data-plot="rate" viewBox="0 0 420 124" aria-hidden="true" hidden></svg>
-        <p data-rate-empty>The rate appears after two snapshots.</p>
-      </figure>
-      <figure>
-        <figcaption><a href="https://github.com/eliaspfeffer/botmap">GitHub stars</a> <strong data-value="stars">—</strong></figcaption>
+        <figcaption>GitHub Stars <strong data-value="stars">—</strong></figcaption>
         <svg data-plot="stars" viewBox="0 0 420 124" aria-hidden="true" hidden></svg>
-        <p class="activity-method">Earlier points use stars active when daily tracking began.</p>
       </figure>
     </div>
-    <p class="activity-method">Each rate is the change in Mac installer downloads divided by the days between snapshots.</p>
-    <details hidden>
-      <summary>View daily data</summary>
-      <div class="activity-table">
-        <table>
-          <thead><tr><th scope="col">Date (UTC)</th><th scope="col">Total downloads</th><th scope="col">Downloads/day</th><th scope="col">Stars</th></tr></thead>
-          <tbody></tbody>
-        </table>
-      </div>
-    </details>
   </section>
   <section aria-labelledby="what-is-botmap">
     <h2 id="what-is-botmap">What is Botmap?</h2>
@@ -197,7 +177,7 @@
 </div>
   <script src="/film.js" defer></script>
   <script src="/install-copy.js" defer></script>
-  <script src="/metrics.mjs?v=release-history-2" type="module"></script>
+  <script src="/metrics.mjs?v=compact-charts" type="module"></script>
 </main>
 <footer><div class="wrap"><span>© 2026 Elias Pfeffer</span><a href="/support/">Support</a><a href="/privacy/">Privacy</a><a href="/impressum/">Impressum</a><a href="https://github.com/eliaspfeffer/botmap">GitHub</a><a href="/license/">Licence</a><a href="mailto:eliaspfeffer@gmail.com">eliaspfeffer@gmail.com</a></div></footer>
 </body>
