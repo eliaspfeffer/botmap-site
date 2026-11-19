@@ -19,7 +19,7 @@
         }
       }
       const nextLink = response.headers.get('link')?.match(/<([^>]+)>;\s*rel="next"/)?.[1];
-      next = nextLink?.startsWith(releases + '?') ? nextLink : null;
+      next = nextLink?.startsWith('https://api.github.com/') ? nextLink : null;
     }
     if (total > 0) count.textContent = total.toLocaleString('en-US');
   } catch {

@@ -23,7 +23,7 @@ async function load(responses) {
 }
 
 test('totals only public DMG downloads across releases and pages', async () => {
-  const next = releases + '?per_page=100&page=2';
+  const next = 'https://api.github.com/repositories/1442814961/releases?per_page=100&page=2';
   const result = await load([
     new Response(JSON.stringify([{ assets: [dmg(160), { name: 'Botmap.zip', download_count: 999 }] }]), {
       headers: { link: `<${next}>; rel="next"` },
