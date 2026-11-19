@@ -1,5 +1,8 @@
 import { githubPages, installerAssets } from './github-data.mjs';
 
+// GitHub stargazer timestamps collected at the start of daily tracking (2026-11-19).
+const earlierStars = [{"starred_at": "2026-11-05T22:00:12Z"}, {"starred_at": "2026-11-17T11:48:03Z"}, {"starred_at": "2026-11-18T19:26:20Z"}];
+
 const DAY = 86_400_000;
 export const format = new Intl.NumberFormat('en', { maximumFractionDigits: 1 });
 const dateFormat = new Intl.DateTimeFormat('en', { month: 'short', day: 'numeric', timeZone: 'UTC' });
@@ -96,7 +99,6 @@ async function showReleaseTotals(section) {
 }
 
 async function showMetrics(section) {
-  const stars = githubPages('repos/eliaspfeffer/botmap/stargazers', 'application/vnd.github.star+json').catch(() => null);
   const status = section.querySelector('[role="status"]');
   try {
     const response = await fetch('https://api.github.com/repos/eliaspfeffer/botmap-site/contents/metrics-history.json?ref=metrics-history', {
@@ -108,11 +110,7 @@ async function showMetrics(section) {
     const latest = samples.at(-1);
     if (!latest) throw new Error('No snapshots yet');
 
-    const plot = section.querySelector('[data-plot="stars"]');
-    draw(plot, samples, 'stars', true);
-    void stars.then(dates => {
-      if (dates) draw(plot, starSeries(dates, samples), 'stars', true);
-    });
+    draw(section.querySelector('[data-plot="stars"]'), starSeries(earlierStars, samples), 'stars', true);
     section.querySelector('[data-value="stars"]').textContent = format.format(latest.stars);
     section.querySelector('[data-value="rate"]').textContent = latest.rate === null ? '—' : format.format(latest.rate);
     if (samples.some(sample => sample.rate !== null)) {
