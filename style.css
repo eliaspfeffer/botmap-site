@@ -1,5 +1,5 @@
 /* trybotmap.com: the same dark, quiet look as the app, its orange for what matters. System fonts only:
-   the site loads nothing from anyone else. The film plays only when requested. */
+   the Mac download count comes from GitHub. The film plays only when requested. */
 :root {
   --bg: #141414; --line: #2c2c2c;
   --text: #ececec; --soft: #c4c4c4; --dim: #9a9a9a; --faint: #858585; --sun: #f08a3c; --peach: #ffd2a8;
@@ -41,7 +41,14 @@ footer a:hover { color: var(--text); }
 .pitch h1 { max-width: 14ch; font-size: clamp(40px, 4vw, 60px); font-weight: 700; line-height: 1.06; letter-spacing: -0.035em; margin: 0 0 20px; text-wrap: balance; }
 .hero-question { display: block; margin-bottom: 18px; color: var(--soft); font-size: 20px; font-weight: 500; letter-spacing: -0.01em; line-height: 1.3; }
 .accent { color: var(--sun); }
-.lede { max-width: 32ch; margin: 0 0 26px; color: var(--soft); font-size: 18px; line-height: 1.5; text-wrap: pretty; }
+.lede { max-width: 32ch; margin: 0 0 16px; color: var(--soft); font-size: 18px; line-height: 1.5; text-wrap: pretty; }
+.hero-agents { display: flex; align-items: center; flex-wrap: wrap; column-gap: 14px; row-gap: 9px; list-style: none; margin: 0 0 20px; padding: 0; }
+.hero-agents li { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; white-space: nowrap; }
+.hero-agents img { width: 24px; height: 24px; border-radius: 5px; object-fit: cover; }
+.hero-agents small { display: block; color: var(--dim); font-size: 10px; font-weight: 400; line-height: 1.15; }
+.download-count { margin: 8px 0 0; color: var(--soft); font-size: 13px; font-variant-numeric: tabular-nums; }
+.download-count strong { color: var(--text); font-weight: 650; }
+.download-count span { color: var(--dim); }
 .get { display: inline-flex; align-items: center; gap: 10px; min-height: 54px; padding: 0 24px; border-radius: 9px; background: var(--sun); color: #1c140e; font-size: 17px; font-weight: 600; text-decoration: none; transition: background-color .15s ease-out, transform .15s ease-out; }
 .get:hover { background: #f59a54; color: #1c140e; }
 .get:active { background: #e47c2f; transform: translateY(1px); }
@@ -77,6 +84,10 @@ footer a:hover { color: var(--text); }
 }
 @media (min-width: 900px) and (max-height: 700px) {
   .stage { padding-top: 24px; padding-bottom: 28px; }
+}
+@media (max-width: 600px) {
+  .stage { padding-top: 30px; gap: 26px; }
+  .hero-agents { display: grid; grid-template-columns: max-content max-content; column-gap: 20px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .get { transition: none; }
