@@ -1,0 +1,20 @@
+name: Check Tab Sharing store availability
+on:
+  schedule:
+    - cron: '17,47 * * * *'
+  workflow_dispatch:
+concurrency:
+  group: tab-sharing-store
+permissions:
+  contents: write
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - run: python3 .github/scripts/check-tab-sharing-store.py
+        env:
+          GH_TOKEN: ${{ github.token }}

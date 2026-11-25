@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests" />
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; img-src 'self'; script-src 'self'; connect-src https://raw.githubusercontent.com; base-uri 'none'; form-action 'none'; upgrade-insecure-requests" />
 <meta name="referrer" content="no-referrer" />
 <title>Botmap Setup: Install, Import Chats &amp; Get Help</title>
 <meta name="description" content="Set up Botmap for Mac with Claude Code and Codex. Find installation steps, chat import help, voice requirements and iPhone pairing support." />
@@ -48,6 +48,19 @@
   <pre><code>npx --yes --allow-remote=all https://trybotmap.com/install-v1.0.2.tgz</code></pre>
   <p>The terminal installer checks the release checksum, developer signature, app identity and Apple notarization before installing. It leaves existing installations in place and opens the newest verified version it finds. Use Botmap's updater for an existing installation.</p>
   <p>Use the complete command above. The unrelated <code>botmap</code> package on npm is not this app. You can <a href="https://github.com/eliaspfeffer/botmap-site/blob/main/installer/README.md">read the installer documentation and source</a> before running it.</p>
+  <h2 id="tab-sharing">Install Botmap Tab Sharing</h2>
+  <p>Share one Chrome tab with a friend from a connected browser window in Botmap 2.3.165 or later for Mac. Only the person sharing installs the extension.</p>
+  <p id="tab-sharing-store-ready" hidden><a id="tab-sharing-store-link" class="get" href="https://chromewebstore.google.com/detail/lbnbnalehdcghbfhipnecfamlabcbmek">Open Chrome Web Store</a></p>
+  <div id="tab-sharing-preview">
+    <p>The Chrome Web Store listing is pending. You can install the preview ZIP manually.</p>
+    <p><a class="get" href="/downloads/Botmap-Tab-Sharing-1.0.0.zip" download>Download preview ZIP</a></p>
+    <ol>
+      <li>Extract the ZIP to a folder you can keep.</li>
+      <li>Open <code>chrome://extensions</code> in Chrome. Turn on <strong>Developer mode</strong>, select <strong>Load unpacked</strong>, and choose the extracted folder that contains <code>manifest.json</code>.</li>
+      <li>In Botmap, choose <strong>Share tab</strong> on a connected browser window. Open <strong>Botmap Tab Sharing</strong> in Chrome’s Extensions menu and confirm the tab.</li>
+    </ol>
+    <p>When the store listing opens, remove the preview from Chrome’s Extensions page before installing the store version.</p>
+  </div>
   <h2 id="import">How do I bring in my Claude Code and Codex chats?</h2>
   <p>Open Import on the map to bring in existing chats from your Mac. Keep Claude Code or Codex installed and signed in. Organize the imported chats under projects and topics, then open a node to read its conversation and send a reply.</p>
   <h2 id="voice">How do voice replies work?</h2>
@@ -69,6 +82,7 @@
   <h2>Privacy</h2>
   <p>Read about local storage, iPhone pairing and AI provider connections in the <a href="/privacy/">privacy policy</a>.</p>
 </main>
+<script src="/tab-sharing-install.js" defer></script>
 <footer><div class="wrap"><span>© 2026 Elias Pfeffer</span><a href="/support/">Support</a><a href="/privacy/">Privacy</a><a href="/impressum/">Impressum</a><a href="https://github.com/eliaspfeffer/botmap">GitHub</a><a href="mailto:eliaspfeffer@gmail.com">eliaspfeffer@gmail.com</a></div></footer>
 </body>
 </html>
