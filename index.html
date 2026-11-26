@@ -117,15 +117,20 @@
         <li><img src="/media/providers/grok-bot.png" width="24" height="24" alt="" /><span>Grok Bot<small>Cloud only</small></span></li>
       </ul>
       <div class="download-actions">
-        <a class="get" href="https://github.com/eliaspfeffer/botmap-site/releases/latest/download/Botmap.dmg"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="currentColor"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701" /></svg>Download for Mac</a>
-        <a class="get get-secondary" href="/support/#linux">Download for Linux</a>
+        <a class="get" data-download-platform="mac" href="https://github.com/eliaspfeffer/botmap-site/releases/latest/download/Botmap.dmg"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="currentColor"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701" /></svg>Download for Mac</a>
+        <a class="get get-secondary" data-download-platform="linux" href="/support/#linux">Download for Linux</a>
       </div>
       <p class="download-count"><strong id="download-count">166+</strong> Mac downloads <span>via GitHub</span></p>
       <p class="fine">Free for personal use and teams up to 5.<br /><a href="/license/">More than 5 people? $50/month for your whole team.</a><br />Apple silicon · macOS 12+</p>
-      <div class="terminal-install">
-        <p>Or install on Mac from your terminal <span>(Node.js 18+)</span></p>
+      <div class="terminal-install" data-install-platform="mac">
+        <p>Install on Mac from your terminal <span>(Node.js 18+)</span></p>
         <div class="install-command"><code id="install-command">npx --yes --allow-remote=all https://trybotmap.com/install-v1.0.2.tgz</code><button type="button" data-copy-install aria-label="Copy terminal install command">Copy</button></div>
         <span id="copy-status" role="status" class="copy-status"></span>
+      </div>
+      <div class="terminal-install" data-install-platform="linux">
+        <p>Install on Linux from your terminal <span>(Debian or Ubuntu)</span></p>
+        <div class="install-command"><code>curl -fsSL https://trybotmap.com/install-linux.sh | bash</code><button type="button" data-copy-install aria-label="Copy Linux install command">Copy</button></div>
+        <span role="status" class="copy-status"></span>
       </div>
   </section>
   <figure class="film">
@@ -179,7 +184,7 @@
   </section>
 </div>
   <script src="/film.js" defer></script>
-  <script src="/install-copy.js?v=linux-install" defer></script>
+  <script src="/install-copy.js?v=platform-install" defer></script>
   <script src="/metrics.mjs?v=compact-charts" type="module"></script>
 </main>
 <footer><div class="wrap"><span>© 2026 Elias Pfeffer</span><a href="/support/">Support</a><a href="/privacy/">Privacy</a><a href="/impressum/">Impressum</a><a href="https://github.com/eliaspfeffer/botmap">GitHub</a><a href="/license/">Licence</a><a href="mailto:eliaspfeffer@gmail.com">eliaspfeffer@gmail.com</a></div></footer>

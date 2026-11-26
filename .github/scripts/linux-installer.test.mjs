@@ -3,6 +3,8 @@ import { createHash } from 'node:crypto';
 import { spawnSync } from 'node:child_process';
 import { mkdtempSync, readFileSync, writeFileSync, rmSync, existsSync } from 'node:fs';
 import { tmpdir } from 'node:os';
+import { createServer } from 'node:net';
+import { once } from 'node:events';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import test from 'node:test';
@@ -10,7 +12,7 @@ import test from 'node:test';
 const installer = fileURLToPath(new URL('../../install-linux.sh', import.meta.url));
 const prefix = 'https://github.com/eliaspfeffer/botmap-site/releases/download/linux-latest/';
 
-function run(t, { arch = 'amd64', existing = '', corrupt = false, foreign = false } = {}) {
+function run(t, { arch = 'amd64', existing = '', corrupt = false, foreign = false, display = ':42', runtime = '' } = {}) {
   const directory = mkdtempSync(join(tmpdir(), 'botmap-installer-test.'));
   t.after(() => rmSync(directory, { recursive: true, force: true }));
   const payload = 'test package';
@@ -47,11 +49,12 @@ function run(t, { arch = 'amd64', existing = '', corrupt = false, foreign = fals
     esac`);
   stub('sudo', 'exec "$@"');
   stub('apt-get', 'printf "%s\n" "$@" > "$TEST_ROOT/apt"');
-  stub('botmap', 'touch "$TEST_ROOT/launched"');
+  stub('systemctl', 'printf "%s\n" "DISPLAY=:42" "XAUTHORITY=/tmp/test-xauthority"');
+  stub('botmap', 'printf "%s" "$DISPLAY" > "$TEST_ROOT/launched"');
   const result = spawnSync('bash', [installer], {
     encoding: 'utf8',
     env: { ...process.env, PATH: `${directory}:${process.env.PATH}`, XDG_STATE_HOME: join(directory, 'state'),
-      DISPLAY: ':42', TEST_ROOT: directory, TEST_ARCH: arch, TEST_EXISTING: existing },
+      DISPLAY: display, WAYLAND_DISPLAY: '', XDG_RUNTIME_DIR: runtime, TEST_ROOT: directory, TEST_ARCH: arch, TEST_EXISTING: existing },
   });
   const read = name => {
     const file = join(directory, name);
@@ -66,7 +69,7 @@ for (const [arch, release] of [['amd64', '2.3.10'], ['arm64', '2.3.12']]) {
     assert.equal(result.status, 0, result.stderr);
     assert.equal(result.downloaded, `botmap_${release}_${arch}.deb`);
     assert.match(result.apt, /install\n-y\n/);
-    if (process.getuid() !== 0) assert.equal(result.launched, '');
+    if (process.getuid() !== 0) assert.equal(result.launched, ':42');
     assert.equal(existsSync(result.staged), false);
   });
 }
@@ -76,7 +79,21 @@ test('keeps an installed version that is at least as new', t => {
   assert.equal(result.status, 0, result.stderr);
   assert.equal(result.downloaded, undefined);
   assert.equal(result.apt, undefined);
-  if (process.getuid() !== 0) assert.equal(result.launched, '');
+  if (process.getuid() !== 0) assert.equal(result.launched, ':42');
+});
+
+test('opens Botmap in the existing desktop when an SSH shell has no display variables', { skip: process.getuid() === 0 }, async t => {
+  const runtime = mkdtempSync('/tmp/botmap-runtime.');
+  const bus = createServer();
+  t.after(() => {
+    bus.close();
+    rmSync(runtime, { recursive: true, force: true });
+  });
+  bus.listen(join(runtime, 'bus'));
+  await once(bus, 'listening');
+  const result = run(t, { existing: 'installed 2.3.10', display: '', runtime });
+  assert.equal(result.status, 0, result.stderr);
+  assert.equal(result.launched, ':42');
 });
 
 test('rejects an unsupported architecture, foreign download URL, and invalid checksum before APT', t => {

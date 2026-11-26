@@ -6,6 +6,17 @@ die() {
   exit 1
 }
 
+find_desktop() {
+  local runtime=${XDG_RUNTIME_DIR:-"/run/user/$EUID"} name value
+  [[ -S "$runtime/bus" && -O "$runtime/bus" ]] || return 0
+  export XDG_RUNTIME_DIR="$runtime"
+  export DBUS_SESSION_BUS_ADDRESS="unix:path=$runtime/bus"
+  # SSH shells lack the display variables that the desktop's user manager already has.
+  while IFS='=' read -r name value; do
+    case "$name" in DISPLAY|WAYLAND_DISPLAY|XAUTHORITY) export "$name=$value" ;; esac
+  done < <(systemctl --user show-environment 2>/dev/null)
+}
+
 main() {
   local arch stage release_prefix package version size checksum actual installed launcher log_dir launch_pid
   local -a apt=(apt-get)
@@ -85,6 +96,9 @@ PY
   fi
 
   launcher=$(command -v botmap) || die 'Botmap is installed, but its launcher could not be found.'
+  if (( EUID != 0 )) && [[ -z "${DISPLAY:-}${WAYLAND_DISPLAY:-}" ]]; then
+    find_desktop
+  fi
   if (( EUID == 0 )) || [[ -z "${DISPLAY:-}${WAYLAND_DISPLAY:-}" ]]; then
     printf 'Open Botmap from your desktop menu.\n'
     return

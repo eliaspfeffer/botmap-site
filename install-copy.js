@@ -1,3 +1,26 @@
+function installPlatform({ userAgentData, platform, userAgent, maxTouchPoints }) {
+  const device = userAgentData?.platform || platform || '';
+  if (userAgentData?.mobile || /Android|CrOS|iPhone|iPad|iPod/i.test(device + ' ' + userAgent)) return '';
+  if (!/Win/i.test(device) && (/^Mac/i.test(device) || /Macintosh/i.test(userAgent))) {
+    return maxTouchPoints > 1 ? '' : 'mac';
+  }
+  if (!/Win/i.test(device) && (/^Linux/i.test(device) || /\bLinux\b/i.test(userAgent))) return 'linux';
+  return '';
+}
+
+const platform = installPlatform(navigator);
+if (platform) {
+  for (const section of document.querySelectorAll('[data-install-platform]')) {
+    section.hidden = section.dataset.installPlatform !== platform;
+  }
+  const downloads = document.querySelectorAll('[data-download-platform]');
+  for (const link of downloads) {
+    const preferred = link.dataset.downloadPlatform === platform;
+    link.classList.toggle('get-secondary', !preferred);
+    if (preferred) link.parentElement.prepend(link);
+  }
+}
+
 document.querySelectorAll('[data-copy-install]').forEach(copy => copy.addEventListener('click', async () => {
   const section = copy.closest('.terminal-install');
   const command = section.querySelector('code');
