@@ -3,16 +3,16 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-A0ZReJdnZH9AQI2ML8PARRBksxZ+/Ecj/SGkiV2ICaE='; style-src 'self'; img-src 'self'; media-src 'self'; connect-src https://api.github.com; base-uri 'none'; form-action 'none'; upgrade-insecure-requests" />
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-gy/BkNPfR6oXp4gz4YzaWgt3gF8KMd2F9u9LEQrvFtM='; style-src 'self'; img-src 'self'; media-src 'self'; connect-src https://api.github.com; base-uri 'none'; form-action 'none'; upgrade-insecure-requests" />
 <meta name="referrer" content="no-referrer" />
-<title>Claude Code &amp; Codex Mind Map for Mac and Linux | Botmap</title>
-<meta name="description" content="Organize Claude Code and Codex chats in a mind map on Mac and Linux. Import existing chats, see which agents need you and reply by voice. Download Botmap." />
+<title>Claude Code &amp; Codex Mind Map for Mac, Windows and Linux | Botmap</title>
+<meta name="description" content="Organize Claude Code and Codex chats in a mind map on Mac, Windows and Linux. Import existing chats, see which agents need you and reply by voice. Download Botmap." />
 <link rel="canonical" href="https://trybotmap.com/" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Botmap" />
 <meta property="og:url" content="https://trybotmap.com/" />
 <meta property="og:title" content="Too many AI chats? Sort them agents in a mindmap" />
-<meta property="og:description" content="Organize Claude Code and Codex chats in a mind map on Mac and Linux. Import existing chats, see which agents need you and reply by voice. Download Botmap." />
+<meta property="og:description" content="Organize Claude Code and Codex chats in a mind map on Mac, Windows and Linux. Import existing chats, see which agents need you and reply by voice. Download Botmap." />
 <meta property="og:image" content="https://trybotmap.com/media/botmap-link-20261111-simple.jpg" />
 <meta property="og:image:type" content="image/jpeg" />
 <meta property="og:image:width" content="1731" />
@@ -20,11 +20,11 @@
 <meta property="og:image:alt" content="A simple Botmap mindmap: one orange project node connects Claude Code, Codex and Research chats." />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Too many AI chats? Sort them agents in a mindmap" />
-<meta name="twitter:description" content="Organize Claude Code and Codex chats in a mind map on Mac and Linux. Import existing chats, see which agents need you and reply by voice. Download Botmap." />
+<meta name="twitter:description" content="Organize Claude Code and Codex chats in a mind map on Mac, Windows and Linux. Import existing chats, see which agents need you and reply by voice. Download Botmap." />
 <meta name="twitter:image" content="https://trybotmap.com/media/botmap-link-20261111-simple.jpg" />
 <meta name="twitter:image:alt" content="A simple Botmap mindmap: one orange project node connects Claude Code, Codex and Research chats." />
 <link rel="icon" href="/logo.svg" type="image/svg+xml" />
-<link rel="stylesheet" href="/style.css?v=20261126-downloads" />
+<link rel="stylesheet" href="/style.css?v=desktop-downloads" />
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -46,7 +46,7 @@
       "@type": "WebPage",
       "@id": "https://trybotmap.com/#webpage",
       "url": "https://trybotmap.com/",
-      "name": "Claude Code & Codex Mind Map for Mac and Linux | Botmap",
+      "name": "Claude Code & Codex Mind Map for Mac, Windows and Linux | Botmap",
       "isPartOf": {
         "@id": "https://trybotmap.com/#website"
       },
@@ -60,12 +60,12 @@
       "@id": "https://trybotmap.com/#app",
       "name": "Botmap",
       "url": "https://trybotmap.com/",
-      "description": "Botmap is a desktop app for Mac and Linux that organizes Claude Code and Codex agents by project in a mind map.",
+      "description": "Botmap is a desktop app for Mac, Windows and Linux that organizes Claude Code and Codex agents by project in a mind map.",
       "applicationCategory": "DeveloperApplication",
-      "operatingSystem": "macOS 12 or later, Debian 12 or later, Ubuntu 24.04",
-      "processorRequirements": "Apple silicon on Mac, 64-bit Intel/AMD or ARM on Linux",
-      "softwareRequirements": "Claude Code or the Codex CLI installed and signed in. Node.js 18 or later for the optional terminal installer.",
-      "downloadUrl": ["https://github.com/eliaspfeffer/botmap-site/releases/latest/download/Botmap.dmg", "https://github.com/eliaspfeffer/botmap-site/releases/download/linux-latest/botmap_2.3.163_amd64.deb", "https://github.com/eliaspfeffer/botmap-site/releases/download/linux-latest/botmap_2.3.163_arm64.deb"],
+      "operatingSystem": "macOS 12 or later, Debian 12 or later, Ubuntu 24.04, Windows x64",
+      "processorRequirements": "Apple silicon on Mac, 64-bit Intel/AMD or ARM on Linux, x64 on Windows",
+      "softwareRequirements": "Claude Code or the Codex CLI installed and signed in. Node.js 18 or later for the optional Mac terminal installer.",
+      "downloadUrl": ["https://github.com/eliaspfeffer/botmap-site/releases/latest/download/Botmap.dmg", "https://github.com/eliaspfeffer/botmap-site/releases/download/windows-latest/Botmap-Setup-x64.exe", "https://github.com/eliaspfeffer/botmap-site/releases/download/linux-latest/botmap_2.3.164_amd64.deb", "https://github.com/eliaspfeffer/botmap-site/releases/download/linux-latest/botmap_2.3.164_arm64.deb"],
       "author": {
         "@id": "https://trybotmap.com/#developer"
       },
@@ -116,22 +116,15 @@
         <li><img src="/media/providers/hermes.png" width="24" height="24" alt="" />Hermes</li>
         <li><img src="/media/providers/grok-bot.png" width="24" height="24" alt="" /><span>Grok Bot<small>Cloud only</small></span></li>
       </ul>
-      <div class="download-actions">
-        <a class="get" data-download-platform="mac" href="https://github.com/eliaspfeffer/botmap-site/releases/latest/download/Botmap.dmg"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="currentColor"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701" /></svg>Download for Mac</a>
-        <a class="get get-secondary" data-download-platform="linux" href="/support/#linux">Download for Linux</a>
+      <p class="download-label" id="download-label">Download Botmap</p>
+      <div class="download-actions desktop-downloads" role="group" aria-labelledby="download-label">
+        <a class="get" data-download-platform="mac" href="https://github.com/eliaspfeffer/botmap-site/releases/latest/download/Botmap.dmg"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="currentColor"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701" /></svg>Mac</a>
+        <a class="get get-secondary" data-download-platform="windows" href="https://github.com/eliaspfeffer/botmap-site/releases/download/windows-latest/Botmap-Setup-x64.exe">Windows x64</a>
+        <a class="get get-secondary" data-download-platform="linux-amd64" data-linux-download="amd64" href="https://github.com/eliaspfeffer/botmap-site/releases/download/linux-latest/botmap_2.3.164_amd64.deb">Linux x64</a>
+        <a class="get get-secondary" data-download-platform="linux-arm64" data-linux-download="arm64" href="https://github.com/eliaspfeffer/botmap-site/releases/download/linux-latest/botmap_2.3.164_arm64.deb">Linux ARM64</a>
       </div>
       <p class="download-count"><strong id="download-count">166+</strong> Mac downloads <span>via GitHub</span></p>
-      <p class="fine">Free for personal use and teams up to 5.<br /><a href="/license/">More than 5 people? $50/month for your whole team.</a><br />Apple silicon · macOS 12+</p>
-      <div class="terminal-install" data-install-platform="mac">
-        <p>Install on Mac from your terminal <span>(Node.js 18+)</span></p>
-        <div class="install-command"><code id="install-command">npx --yes --allow-remote=all https://trybotmap.com/install-v1.0.2.tgz</code><button type="button" data-copy-install aria-label="Copy terminal install command">Copy</button></div>
-        <span id="copy-status" role="status" class="copy-status"></span>
-      </div>
-      <div class="terminal-install" data-install-platform="linux">
-        <p>Install on Linux from your terminal <span>(Debian or Ubuntu)</span></p>
-        <div class="install-command"><code>curl -fsSL https://trybotmap.com/install-linux.sh | bash</code><button type="button" data-copy-install aria-label="Copy Linux install command">Copy</button></div>
-        <span role="status" class="copy-status"></span>
-      </div>
+      <p class="fine">Free for personal use and teams up to 5.<br /><a href="/license/">More than 5 people? $50/month for your whole team.</a><br /><a href="/support/#requirements">Installation help and system requirements</a></p>
   </section>
   <figure class="film">
     <video controls preload="none" playsinline poster="/media/poster-20261111.jpg" width="1920" height="1080">
@@ -156,8 +149,8 @@
   </section>
   <section aria-labelledby="what-is-botmap">
     <h2 id="what-is-botmap">What is Botmap?</h2>
-    <p>Botmap is a desktop app for Mac and Linux that organizes Claude Code and Codex agents in a mind map. Each chat is a node in your project. See what your agents are doing, find the ones waiting for an answer and open the full conversation when you need the detail.</p>
-    <p>It runs your installed Claude Code and Codex command lines with the accounts you already use. Your map stays in plain files on your Mac.</p>
+    <p>Botmap is a desktop app for Mac, Windows and Linux that organizes Claude Code and Codex agents in a mind map. Each chat is a node in your project. See what your agents are doing, find the ones waiting for an answer and open the full conversation when you need the detail.</p>
+    <p>It runs your installed Claude Code and Codex command lines with the accounts you already use. Your map stays in plain files on your computer.</p>
   </section>
   <section aria-labelledby="organize-agents">
     <h2 id="organize-agents">How do I organize multiple AI agents?</h2>
@@ -172,7 +165,7 @@
   <section aria-labelledby="questions">
     <h2 id="questions">Before you download</h2>
     <h3>What does Botmap need to run?</h3>
-    <p>Botmap runs on Apple silicon Macs with macOS 12 or later and is available as a preview for Debian and Ubuntu. Install and sign in to Claude Code or the Codex CLI to use your agents. <a href="/support/#requirements">Check the setup requirements</a>.</p>
+    <p>Botmap runs on Apple silicon Macs with macOS 12 or later and is available as a preview for Windows x64, Debian and Ubuntu. Install and sign in to Claude Code or the Codex CLI to use your agents. <a href="/support/#requirements">Check the setup requirements</a>.</p>
     <h3>Is Botmap free?</h3>
     <p>Botmap is free for personal use and organizations with up to five people. Larger organizations pay USD 50 per month for the whole organization, with no per-person charge. AI provider subscriptions and API usage are separate. See the <a href="/license/">team license and billing terms</a>.</p>
     <h3>Does Botmap replace Claude Code or Codex?</h3>
@@ -184,7 +177,8 @@
   </section>
 </div>
   <script src="/film.js" defer></script>
-  <script src="/install-copy.js?v=platform-install" defer></script>
+  <script src="/install-copy.js?v=desktop-downloads" defer></script>
+  <script src="/linux-downloads.mjs?v=desktop-downloads" type="module"></script>
   <script src="/metrics.mjs?v=compact-charts" type="module"></script>
 </main>
 <footer><div class="wrap"><span>© 2026 Elias Pfeffer</span><a href="/support/">Support</a><a href="/privacy/">Privacy</a><a href="/impressum/">Impressum</a><a href="https://github.com/eliaspfeffer/botmap">GitHub</a><a href="/license/">Licence</a><a href="mailto:eliaspfeffer@gmail.com">eliaspfeffer@gmail.com</a></div></footer>

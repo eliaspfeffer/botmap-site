@@ -1,18 +1,18 @@
 function installPlatform({ userAgentData, platform, userAgent, maxTouchPoints }) {
   const device = userAgentData?.platform || platform || '';
   if (userAgentData?.mobile || /Android|CrOS|iPhone|iPad|iPod/i.test(device + ' ' + userAgent)) return '';
-  if (!/Win/i.test(device) && (/^Mac/i.test(device) || /Macintosh/i.test(userAgent))) {
+  if (/^Win/i.test(device) || /\bWindows NT\b/i.test(userAgent)) return 'windows';
+  if (/^Mac/i.test(device) || /Macintosh/i.test(userAgent)) {
     return maxTouchPoints > 1 ? '' : 'mac';
   }
-  if (!/Win/i.test(device) && (/^Linux/i.test(device) || /\bLinux\b/i.test(userAgent))) return 'linux';
+  if (/^Linux/i.test(device) || /\bLinux\b/i.test(userAgent)) {
+    return /\b(?:aarch64|arm64)\b/i.test(platform + ' ' + userAgent) ? 'linux-arm64' : 'linux-amd64';
+  }
   return '';
 }
 
 const platform = installPlatform(navigator);
 if (platform) {
-  for (const section of document.querySelectorAll('[data-install-platform]')) {
-    section.hidden = section.dataset.installPlatform !== platform;
-  }
   const downloads = document.querySelectorAll('[data-download-platform]');
   for (const link of downloads) {
     const preferred = link.dataset.downloadPlatform === platform;

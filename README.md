@@ -1,9 +1,15 @@
 # trybotmap.com
 
 The public pages of Botmap: the landing page, the privacy policy, support and the Impressum, served by GitHub Pages from this branch
-as they are (no build). Botmap for Mac downloads are this repo's Releases. There are no third-party scripts; the commercial license page links to PayPal’s hosted checkout.
+as they are (no build). Desktop installers are served from this repo's Releases. There are no third-party scripts; the commercial license page links to PayPal’s hosted checkout.
 
-Install directly from a terminal on Apple silicon Mac (macOS 12+, Node.js 18+):
+The homepage and support page pick up new installers from the existing release channels:
+
+- Mac uses `Botmap.dmg` on the latest stable release.
+- Windows uses `Botmap-Setup-x64.exe` on `windows-latest`.
+- Linux picks the highest uploaded `botmap_<version>_<architecture>.deb` on `linux-latest` for each architecture. Keep the packages linked in the site HTML available as fallbacks if the public GitHub API is unreachable.
+
+The Mac terminal installer is also available on Apple silicon (macOS 12+, Node.js 18+):
 
 ```sh
 npx --yes --allow-remote=all https://trybotmap.com/install-v1.0.2.tgz

@@ -1,6 +1,6 @@
 # Botmap
 
-> Botmap is a source-available Mac app that puts every Claude Code and Codex agent chat on one mind map, with four views of the same chats: Mindmap, Swipe, Bubbles and Matrix. It imports the chats already on the Mac, runs the agents through their own command lines on the plan the user already has, and lets the user answer them with one key or by voice. An iPhone companion connects to your own Mac. See the support page for pairing instructions; this website does not currently publish an App Store download link. This file tells an AI agent how to set Botmap up for its user, from download to a paired iPhone.
+> Botmap is a source-available desktop app for Mac, Windows and Linux that puts every Claude Code and Codex agent chat on one mind map, with four views of the same chats: Mindmap, Swipe, Bubbles and Matrix. It imports the chats already on the Mac, runs the agents through their own command lines on the plan the user already has, and lets the user answer them with one key or by voice. An iPhone companion connects to your own Mac. See the support page for pairing instructions; this website does not currently publish an App Store download link. This file tells an AI agent how to set Botmap up for its user, from download to a paired iPhone.
 
 ## Product facts
 
@@ -8,39 +8,35 @@
 - Free for personal use and organizations with up to five people. Larger organizations need a USD 50 monthly license for the whole organization. AI subscriptions and API charges are separate.
 - Source-available under the Botmap License, not open source.
 - Your map and working files stay on your Mac; AI requests go to your configured providers. Optional dictation and GPT Live use OpenAI. Local storage does not mean that AI content never leaves your device.
-- Mac setup and support: https://trybotmap.com/support/
+- Desktop setup and support: https://trybotmap.com/support/
 - Licensing: https://trybotmap.com/license/
 - Privacy: https://trybotmap.com/privacy/
 - Sitemap: https://trybotmap.com/sitemap.xml
 
 ## What you need
 
-- A Mac with Apple silicon, macOS 12 or later.
+- A Mac with Apple silicon (macOS 12+), a Windows x64 PC, or Debian 12+ / Ubuntu 24.04 on x64 or ARM64. Windows and Linux builds are previews.
 - Claude Code and/or the Codex CLI, installed and signed in. Botmap uses them as they are; it has no account of its own.
 - For dictation and GPT Live: an OpenAI API key.
 - For the iPhone: Tailscale on the Mac and on the iPhone, signed in to the same account.
 
 ## Install
 
-With Node.js 18+ installed, run this command in the terminal:
+Choose a desktop installer at https://trybotmap.com/.
+
+- Mac: Open the downloaded DMG, drag Botmap to Applications and open it. The app is signed and Apple-notarized. macOS may ask you to confirm the first launch.
+- Windows: Open the downloaded x64 setup file and follow its prompts. The unsigned preview can prompt SmartScreen or be blocked by device security policy.
+- Linux: Open the downloaded .deb in your software installer and choose Install. Use x64 for Intel or AMD, or ARM64 for ARM.
+
+On Apple silicon Macs with Node.js 18+, there is also a terminal installer:
 
 ```sh
 npx --yes --allow-remote=all https://trybotmap.com/install-v1.0.2.tgz
 ```
 
-It verifies the latest stable Mac ZIP's checksum, Developer ID, bundle identity,
-Apple notarization and startup, then installs and opens `~/Applications/Botmap.app`.
-Existing installations are verified and opened without replacement. `--no-open`
-installs without opening Botmap. The installer never changes chats or drafts.
-Do not use the unrelated `botmap` package from npm.
+It verifies the stable Mac ZIP, installs to `~/Applications/Botmap.app` and opens it. Existing installations are verified and opened without replacement. `--no-open` installs without opening Botmap. Do not use the unrelated `botmap` package from npm.
 
-Alternatively, install without Node.js:
-
-1. Download https://github.com/eliaspfeffer/botmap-site/releases/latest/download/Botmap.dmg (the newest stable release).
-2. Open the DMG and drag Botmap to Applications.
-3. Open Botmap from Applications. It is signed and notarized by Apple; macOS may ask you to confirm the first launch.
-
-Updates: from version 2.1, Botmap checks this repository's latest release by itself; when a newer one is out, the sidebar shows "Update to …", which downloads it, checks Apple's signature and notarization, and restarts Botmap.
+Mac updates: from version 2.1, Botmap checks this repository's latest release by itself; when a newer one is out, the sidebar shows "Update to …", which downloads it, checks Apple's signature and notarization, and restarts Botmap.
 
 ## First launch
 

@@ -13,7 +13,7 @@ export function newestPackage(assets, architecture, fallback) {
   let current = version(best.slice(release.length));
   for (const asset of assets) {
     const next = version(asset.name);
-    if (!next || asset.browser_download_url !== release + asset.name) continue;
+    if (!next || asset.state !== 'uploaded' || !(asset.size > 0) || asset.browser_download_url !== release + asset.name) continue;
     const difference = next.map((part, index) => part - current[index]).find(Boolean);
     if (difference > 0) {
       best = asset.browser_download_url;
