@@ -50,7 +50,8 @@ docs["/404.html"] = Document(ROOT / "404.html")
 urls = [e.text for e in ElementTree.parse(ROOT / "sitemap.xml").iter(
     "{http://www.sitemaps.org/schemas/sitemap/0.9}loc")]
 assert len(urls) == len(set(urls))
-assert set(urls) == {ORIGIN + route for route in paths}, "Sitemap must match public pages"
+private_pages = {"/404.html", "/invite/"}
+assert set(urls) == {ORIGIN + route for route in paths if route not in private_pages}, "Sitemap must match public pages"
 assert "Sitemap: " + ORIGIN + "/sitemap.xml" in (ROOT / "robots.txt").read_text()
 assert "Disallow:" not in (ROOT / "robots.txt").read_text()
 # Public ownership proofs must stay deployed while these search-console owners are active.
@@ -79,7 +80,7 @@ for route, doc in docs.items():
     assert not any(t in ("form", "iframe", "object", "embed", "base") for t, _ in doc.tags), route
     ids = [a["id"] for _, a in doc.tags if "id" in a]
     assert len(ids) == len(set(ids)), (route, "Duplicate id")
-    if route == "/404.html":
+    if route in private_pages:
         assert doc.meta("robots") == "noindex"
     else:
         assert not any("noindex" in a.get("content", "") for t, a in doc.tags if t == "meta"), route
@@ -92,8 +93,8 @@ for route, doc in docs.items():
     for attrs, data in doc.scripts:
         if attrs.get("src"):
             assert "'self'" in csp.get("script-src", [])
-            assert urlsplit(attrs["src"]).path in ("/film.js", "/install-copy.js", "/metrics.mjs",
-                                                 "/tab-sharing-install.js", "/linux-downloads.mjs")
+            assert urlsplit(urljoin(ORIGIN + route, attrs["src"])).path in ("/film.js", "/install-copy.js", "/metrics.mjs",
+                                                 "/tab-sharing-install.js", "/linux-downloads.mjs", "/invite/invite.mjs")
         else:
             assert attrs.get("type") == "application/ld+json", "Executable inline script"
             digest = base64.b64encode(hashlib.sha256(data.encode()).digest()).decode()
