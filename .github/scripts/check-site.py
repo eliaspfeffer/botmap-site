@@ -93,7 +93,7 @@ for route, doc in docs.items():
         if attrs.get("src"):
             assert "'self'" in csp.get("script-src", [])
             assert urlsplit(attrs["src"]).path in ("/film.js", "/install-copy.js", "/metrics.mjs",
-                                                 "/tab-sharing-install.js")
+                                                 "/tab-sharing-install.js", "/linux-downloads.mjs")
         else:
             assert attrs.get("type") == "application/ld+json", "Executable inline script"
             digest = base64.b64encode(hashlib.sha256(data.encode()).digest()).decode()

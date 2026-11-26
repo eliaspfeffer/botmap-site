@@ -3,39 +3,40 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; img-src 'self'; script-src 'self'; connect-src https://raw.githubusercontent.com; base-uri 'none'; form-action 'none'; upgrade-insecure-requests" />
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; img-src 'self'; script-src 'self'; connect-src https://raw.githubusercontent.com https://api.github.com; base-uri 'none'; form-action 'none'; upgrade-insecure-requests" />
 <meta name="referrer" content="no-referrer" />
 <title>Botmap Setup: Install, Import Chats &amp; Get Help</title>
-<meta name="description" content="Set up Botmap for Mac with Claude Code and Codex. Find installation steps, chat import help, voice requirements and iPhone pairing support." />
+<meta name="description" content="Set up Botmap for Mac or Linux with Claude Code and Codex. Find installation steps, chat import help, voice requirements and iPhone pairing support." />
 <link rel="canonical" href="https://trybotmap.com/support/" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Botmap" />
 <meta property="og:url" content="https://trybotmap.com/support/" />
 <meta property="og:title" content="Botmap Setup: Install, Import Chats &amp; Get Help" />
-<meta property="og:description" content="Set up Botmap for Mac with Claude Code and Codex. Find installation steps, chat import help, voice requirements and iPhone pairing support." />
+<meta property="og:description" content="Set up Botmap for Mac or Linux with Claude Code and Codex. Find installation steps, chat import help, voice requirements and iPhone pairing support." />
 <meta property="og:image" content="https://trybotmap.com/media/botmap-link-20261111-simple.jpg" />
 <meta property="og:image:alt" content="A Botmap project mindmap connecting Claude Code, Codex and Research chats." />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Botmap Setup: Install, Import Chats &amp; Get Help" />
-<meta name="twitter:description" content="Set up Botmap for Mac with Claude Code and Codex. Find installation steps, chat import help, voice requirements and iPhone pairing support." />
+<meta name="twitter:description" content="Set up Botmap for Mac or Linux with Claude Code and Codex. Find installation steps, chat import help, voice requirements and iPhone pairing support." />
 <meta name="twitter:image" content="https://trybotmap.com/media/botmap-link-20261111-simple.jpg" />
 <meta name="twitter:image:alt" content="A Botmap project mindmap connecting Claude Code, Codex and Research chats." />
 <link rel="icon" href="/logo.svg" type="image/svg+xml" />
-<link rel="stylesheet" href="/style.css?v=20261117-seo" />
+<link rel="stylesheet" href="/style.css?v=20261126-downloads" />
+<script src="/linux-downloads.mjs" type="module"></script>
 </head>
 <body>
 <nav><div class="wrap"><a class="brand" href="/"><img src="/logo.svg" alt="" />Botmap</a>
   <div class="links"><a href="/support/" aria-current="page">Support</a><a href="/privacy/">Privacy</a></div></div></nav>
 <main class="wrap doc">
   <span class="label">Support</span>
-  <h1>Set up Botmap on your Mac</h1>
-  <p>Botmap organizes Claude Code and Codex chats by project in a mind map. Install the Mac app, connect your existing agents and import the conversations you want to work with.</p>
+  <h1>Set up Botmap on Mac or Linux</h1>
+  <p>Botmap organizes Claude Code and Codex chats by project in a mind map. Install the desktop app, connect your existing agents and import the conversations you want to work with.</p>
   <p>Write to <a href="mailto:eliaspfeffer@gmail.com">eliaspfeffer@gmail.com</a>. You get an answer from the person who builds it.</p>
   <h2 id="requirements">What do I need?</h2>
   <ul>
-    <li>An Apple silicon Mac (M1 or newer) with macOS 12 or later. The current Mac download does not support Intel Macs, Windows or Linux.</li>
-    <li>Claude Code or the Codex CLI installed and signed in on that Mac. Your provider's subscription or API charges are separate from Botmap.</li>
-    <li>Node.js 18 or later only if you use the terminal installer.</li>
+    <li>For Mac, Apple silicon (M1 or newer) and macOS 12 or later.</li>
+    <li>Claude Code or the Codex CLI installed and signed in on your computer. Your provider's subscription or API charges are separate from Botmap.</li>
+    <li>Node.js 18 or later only if you use the Mac terminal installer.</li>
     <li>Your own OpenAI API key if you want optional dictation or GPT Live.</li>
   </ul>
   <h2 id="mac">How do I install Botmap for Mac?</h2>
@@ -48,6 +49,13 @@
   <pre><code>npx --yes --allow-remote=all https://trybotmap.com/install-v1.0.2.tgz</code></pre>
   <p>The terminal installer checks the release checksum, developer signature, app identity and Apple notarization before installing. It leaves existing installations in place and opens the newest verified version it finds. Use Botmap's updater for an existing installation.</p>
   <p>Use the complete command above. The unrelated <code>botmap</code> package on npm is not this app. You can <a href="https://github.com/eliaspfeffer/botmap-site/blob/main/installer/README.md">read the installer documentation and source</a> before running it.</p>
+  <h2 id="linux">Download for Debian or Ubuntu</h2>
+  <p>Linux preview for 64-bit Intel, AMD and ARM computers. Use <code>dpkg --print-architecture</code> to check which package to choose.</p>
+  <div class="download-actions">
+    <a class="get" data-linux-download="amd64" href="https://github.com/eliaspfeffer/botmap-site/releases/download/linux-latest/botmap_2.3.162_amd64.deb">Intel or AMD (.deb)</a>
+    <a class="get get-secondary" data-linux-download="arm64" href="https://github.com/eliaspfeffer/botmap-site/releases/download/linux-latest/botmap_2.3.162_arm64.deb">ARM (.deb)</a>
+  </div>
+  <p>Open the downloaded package with your software installer, or run <code>sudo apt install ./&lt;downloaded-file&gt;.deb</code> from its folder. <a href="https://github.com/eliaspfeffer/botmap-site/releases/tag/linux-latest">Linux release notes and checksums</a>.</p>
   <h2 id="tab-sharing">Install Botmap Tab Sharing</h2>
   <p>Share one Chrome tab with a friend from a connected browser window in Botmap 2.3.165 or later for Mac. Only the person sharing installs the extension.</p>
   <p id="tab-sharing-store-ready" hidden><a id="tab-sharing-store-link" class="get" href="https://chromewebstore.google.com/detail/lbnbnalehdcghbfhipnecfamlabcbmek">Open Chrome Web Store</a></p>
