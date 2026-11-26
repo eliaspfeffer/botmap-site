@@ -50,7 +50,7 @@ docs["/404.html"] = Document(ROOT / "404.html")
 urls = [e.text for e in ElementTree.parse(ROOT / "sitemap.xml").iter(
     "{http://www.sitemaps.org/schemas/sitemap/0.9}loc")]
 assert len(urls) == len(set(urls))
-private_pages = {"/404.html", "/invite/"}
+private_pages = {"/404.html", "/invite/", "/stats/"}
 assert set(urls) == {ORIGIN + route for route in paths if route not in private_pages}, "Sitemap must match public pages"
 assert "Sitemap: " + ORIGIN + "/sitemap.xml" in (ROOT / "robots.txt").read_text()
 assert "Disallow:" not in (ROOT / "robots.txt").read_text()
@@ -94,7 +94,7 @@ for route, doc in docs.items():
         if attrs.get("src"):
             assert "'self'" in csp.get("script-src", [])
             assert urlsplit(urljoin(ORIGIN + route, attrs["src"])).path in ("/film.js", "/install-copy.js", "/metrics.mjs",
-                                                 "/tab-sharing-install.js", "/linux-downloads.mjs", "/invite/invite.mjs")
+                                                 "/tab-sharing-install.js", "/linux-downloads.mjs", "/invite/invite.mjs", "/stats/stats.mjs")
         else:
             assert attrs.get("type") == "application/ld+json", "Executable inline script"
             digest = base64.b64encode(hashlib.sha256(data.encode()).digest()).decode()

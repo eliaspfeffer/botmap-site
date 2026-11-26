@@ -1,0 +1,21 @@
+.stats { max-width: 760px; padding-block: 32px 64px; }
+.stats h1 { margin: 12px 0 26px; font-size: clamp(34px, 6vw, 48px); text-wrap: initial; }
+.stats section { padding-block: 22px; border-top: 1px solid var(--line); }
+.stats h2 { margin-bottom: 5px; font-size: 21px; }
+.stats h2 span { margin-left: 7px; color: var(--dim); font-size: 13px; font-weight: 500; }
+.stats p { margin: 5px 0 10px; color: var(--soft); }
+.stats-counts:not([hidden]) { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 18px 0 0; }
+.stats-counts dt { color: var(--dim); font-size: 13px; }
+.stats-counts dd { margin: 0; font-size: 30px; font-weight: 650; font-variant-numeric: tabular-nums; }
+.stats table { width: 100%; margin-top: 12px; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+.stats th, .stats td { padding-block: 9px; text-align: start; border-bottom: 1px solid var(--line); }
+.stats th:last-child, .stats td:last-child { text-align: end; }
+.stats th { color: var(--dim); font-size: 13px; font-weight: 500; }
+.stats .activity-plots { max-width: 460px; margin: 13px 0; }
+.stats-access { max-width: 420px; margin-top: 14px; }
+.stats-access label { display: block; color: var(--soft); font-size: 14px; }
+.stats-access div { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 5px; }
+.stats-access input, .stats-access button { min-height: 42px; padding: 6px 12px; border: 1px solid var(--line); border-radius: 6px; color: var(--text); font: inherit; }
+.stats-access input { flex: 1; min-width: 130px; background: var(--bg); }
+.stats-access button { color: var(--peach); background: #222; cursor: pointer; }
+.stats-access button:hover { background: var(--line); }

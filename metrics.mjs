@@ -82,7 +82,8 @@ async function showReleaseTotals(section) {
   try {
     const assets = installerAssets(await githubPages('repos/eliaspfeffer/botmap-site/releases'));
     const total = assets.reduce((sum, asset) => sum + asset.download_count, 0);
-    if (assets.length) document.getElementById('download-count').textContent = format.format(total);
+    const count = document.getElementById('download-count');
+    if (assets.length && count) count.textContent = format.format(total);
     const points = releaseSeries(assets, Date.now());
     if (!points.length) throw new Error('No installer data');
     draw(section.querySelector('[data-plot="downloads"]'), points, 'downloads');
@@ -113,7 +114,7 @@ async function showMetrics(section) {
 if (typeof document !== 'undefined') {
   const section = document.getElementById('github-activity');
   if (section) {
-    void showMetrics(section);
+    if (section.querySelector('[data-plot="stars"]')) void showMetrics(section);
     void showReleaseTotals(section);
   }
 }
