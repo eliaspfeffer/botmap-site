@@ -82,11 +82,28 @@ function showPage() {
     const linux = navigator.platform.toLowerCase().startsWith('linux') && !/Android/i.test(ua);
     const mac = /Mac/i.test(navigator.platform) && navigator.maxTouchPoints < 2;
     const appStore = /iPhone|iPad|iPod/i.test(ua) || /Mac/i.test(navigator.platform) && navigator.maxTouchPoints > 1;
-    const url = windows ? 'https://github.com/eliaspfeffer/botmap-site/releases/download/windows-latest/Botmap-Setup-x64.exe' : linux ? '/support/#linux' : mac ? 'https://github.com/eliaspfeffer/botmap-site/releases/latest/download/Botmap.dmg' : appStore ? '/support/#iphone' : '/';
+    const url = linux ? '/support/#linux' : mac ? 'https://github.com/eliaspfeffer/botmap-site/releases/latest/download/Botmap.dmg' : appStore ? '/support/#iphone' : '/';
     title.textContent = de ? 'Botmap installieren' : 'Install Botmap';
     status.textContent = de ? 'Öffne Botmap nach der Installation, um deine Einladung anzusehen.' : 'Open Botmap after installing to review your invitation.';
-    button(de ? 'Zum Download' : 'Get Botmap', url);
-    if (mac || windows) location.href = url;
+    if (windows) {
+      status.textContent = de ? 'Prüfe, ob Botmap für Windows verfügbar ist…' : 'Checking for Botmap for Windows…';
+      fetch('https://api.github.com/repos/eliaspfeffer/botmap-site/releases/tags/windows-latest', { signal: AbortSignal.timeout(5000) })
+        .then(response => response.ok ? response.json() : null)
+        .then(release => {
+          const windowsDownload = 'https://github.com/eliaspfeffer/botmap-site/releases/download/windows-latest/Botmap-Setup-x64.exe';
+          if (!release?.assets?.some(asset => asset.browser_download_url === windowsDownload)) throw Error('Preview unavailable');
+          status.textContent = de ? 'Öffne nach der Installation deine Einladung in Botmap.' : 'Open your invitation in Botmap after installing.';
+          button(de ? 'Zum Download' : 'Get Botmap', windowsDownload);
+          location.href = windowsDownload;
+        })
+        .catch(() => {
+          status.textContent = de ? 'Die Windows-Vorschau ist gerade nicht verfügbar. Du kannst im Browser mitarbeiten.' : 'The Windows preview is currently unavailable. You can collaborate in the browser.';
+          if (link) button(de ? 'Geteilte Map öffnen' : 'Open shared map', link.href);
+        });
+    } else {
+      button(de ? 'Zum Download' : 'Get Botmap', url);
+      if (mac) location.href = url;
+    }
     return;
   }
 
