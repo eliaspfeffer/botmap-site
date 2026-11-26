@@ -23,6 +23,7 @@
 <link rel="icon" href="/logo.svg" type="image/svg+xml" />
 <link rel="stylesheet" href="/style.css?v=20261126-downloads" />
 <script src="/linux-downloads.mjs" type="module"></script>
+<script src="/install-copy.js?v=linux-install" defer></script>
 </head>
 <body>
 <nav><div class="wrap"><a class="brand" href="/"><img src="/logo.svg" alt="" />Botmap</a>
@@ -50,12 +51,17 @@
   <p>The terminal installer checks the release checksum, developer signature, app identity and Apple notarization before installing. It leaves existing installations in place and opens the newest verified version it finds. Use Botmap's updater for an existing installation.</p>
   <p>Use the complete command above. The unrelated <code>botmap</code> package on npm is not this app. You can <a href="https://github.com/eliaspfeffer/botmap-site/blob/main/installer/README.md">read the installer documentation and source</a> before running it.</p>
   <h2 id="linux">Download for Debian or Ubuntu</h2>
-  <p>Linux preview for 64-bit Intel, AMD and ARM computers. Use <code>dpkg --print-architecture</code> to check which package to choose.</p>
+  <div class="terminal-install">
+    <p>Install and open Botmap from your desktop terminal.</p>
+    <div class="install-command"><code>curl -fsSL https://trybotmap.com/install-linux.sh | bash</code><button type="button" data-copy-install aria-label="Copy Linux install command">Copy</button></div>
+    <span role="status" class="copy-status"></span>
+  </div>
+  <p>The installer picks the right package for 64-bit Intel, AMD or ARM and may ask for your sudo password. It uses curl and Python 3.</p>
   <div class="download-actions">
     <a class="get" data-linux-download="amd64" href="https://github.com/eliaspfeffer/botmap-site/releases/download/linux-latest/botmap_2.3.163_amd64.deb">Intel or AMD (.deb)</a>
     <a class="get get-secondary" data-linux-download="arm64" href="https://github.com/eliaspfeffer/botmap-site/releases/download/linux-latest/botmap_2.3.163_arm64.deb">ARM (.deb)</a>
   </div>
-  <p>Open the downloaded package with your software installer, or run <code>sudo apt install ./&lt;downloaded-file&gt;.deb</code> from its folder. <a href="https://github.com/eliaspfeffer/botmap-site/releases/tag/linux-latest">Linux release notes and checksums</a>.</p>
+  <p>For a manual install, open the downloaded package with your software installer. <a href="https://github.com/eliaspfeffer/botmap-site/releases/tag/linux-latest">Linux release notes and checksums</a>.</p>
   <h2 id="external-invites">Invite a friend outside your Tailscale network</h2>
   <p>Link the cards or topics you want to share to your friend on the map. Open their friend card and choose <strong>Copy external invite</strong>. They can open the link in a browser without a Tailscale account. Keep Botmap and Tailscale running while you work together.</p>
   <p>The host needs <a href="https://tailscale.com/docs/features/tailscale-funnel">Tailscale Funnel enabled</a>. To host from Linux, your local user needs <a href="https://tailscale.com/docs/reference/troubleshooting/linux/linux-operator-permission">Tailscale operator permission</a>. Choose <strong>Take access back</strong> on the friend’s card to revoke the link.</p>
