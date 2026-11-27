@@ -36,15 +36,10 @@ def main():
         print(f"Snapshot already exists for {date}.")
         return
 
-    download_counts = gh(REPO + "/releases?per_page=100", "--paginate", "--jq",
-                         '.[] | select(.draft | not) | .assets[] | select(.name == "Botmap.dmg") | .download_count')
-    counts = [int(value) for value in download_counts.splitlines()]
-    if not counts or any(count < 0 for count in counts):
-        raise ValueError("GitHub returned no valid Mac installer counts.")
     stars = int(gh("repos/eliaspfeffer/botmap", "--jq", ".stargazers_count"))
     if stars < 0:
         raise ValueError("GitHub returned an invalid star count.")
-    snapshot = {"at": now.isoformat(timespec="seconds"), "downloads": sum(counts), "stars": stars}
+    snapshot = {"at": now.isoformat(timespec="seconds"), "stars": stars}
     snapshots.append(snapshot)
     content = base64.b64encode((json.dumps(snapshots, separators=(",", ":")) + "\n").encode()).decode()
     fields = {"branch": BRANCH, "message": f"Record Botmap metrics for {date}", "content": content}
