@@ -75,7 +75,10 @@ for route, doc in docs.items():
         assert csp[key] == ["'none'"], (route, key)
     assert not any(word in policies[0] for word in ("unsafe-inline", "unsafe-eval", "*", "data:")), route
     if route == "/":
-        assert csp["connect-src"] == ["https://api.github.com"]
+        assert csp["connect-src"] == [
+            "https://api.github.com",
+            "https://raw.githubusercontent.com/eliaspfeffer/botmap-site/testflight-availability/testflight.json",
+        ]
     assert doc.meta("referrer") == "no-referrer", route
     assert not any(t in ("form", "iframe", "object", "embed", "base") for t, _ in doc.tags), route
     ids = [a["id"] for _, a in doc.tags if "id" in a]
@@ -94,7 +97,8 @@ for route, doc in docs.items():
         if attrs.get("src"):
             assert "'self'" in csp.get("script-src", [])
             assert urlsplit(urljoin(ORIGIN + route, attrs["src"])).path in ("/film.js", "/install-copy.js", "/metrics.mjs",
-                                                 "/tab-sharing-install.js", "/linux-downloads.mjs", "/invite/invite.mjs", "/stats/stats.mjs")
+                                                 "/tab-sharing-install.js", "/linux-downloads.mjs", "/testflight-download.mjs",
+                                                 "/invite/invite.mjs", "/stats/stats.mjs")
         else:
             assert attrs.get("type") == "application/ld+json", "Executable inline script"
             digest = base64.b64encode(hashlib.sha256(data.encode()).digest()).decode()

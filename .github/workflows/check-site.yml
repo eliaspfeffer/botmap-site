@@ -13,4 +13,5 @@ jobs:
         with:
           persist-credentials: false
       - run: python3 .github/scripts/check-site.py
+      - run: python3 -m unittest discover -s .github/scripts
       - run: node --test .github/scripts/*.test.mjs
