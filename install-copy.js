@@ -1,6 +1,7 @@
 async function installPlatform({ userAgentData, platform, userAgent, maxTouchPoints }) {
   const device = userAgentData?.platform || platform || '';
-  if (userAgentData?.mobile || /Android|CrOS|iPhone|iPad|iPod/i.test(device + ' ' + userAgent)) return '';
+  if (/iPhone/i.test(device + ' ' + userAgent)) return 'iphone';
+  if (userAgentData?.mobile || /Android|CrOS|iPad|iPod/i.test(device + ' ' + userAgent)) return '';
   if (/^Win/i.test(device) || /\bWindows NT\b/i.test(userAgent)) return 'windows';
   if (/^Mac/i.test(device) || /Macintosh/i.test(userAgent)) {
     return maxTouchPoints > 1 ? '' : 'mac';
@@ -19,14 +20,43 @@ async function installPlatform({ userAgentData, platform, userAgent, maxTouchPoi
   return '';
 }
 
-const downloads = document.querySelectorAll('[data-download-platform]');
-if (downloads.length) {
-  installPlatform(navigator).then(platform => {
-    const recommended = [...downloads].find(link => link.dataset.downloadPlatform === platform);
+async function addIPhoneBeta(downloadActions) {
+  let invite;
+  try {
+    const response = await fetch(
+      'https://raw.githubusercontent.com/eliaspfeffer/botmap-site/testflight-availability/testflight.json',
+      { signal: AbortSignal.timeout(3000) },
+    );
+    if (!response.ok) return;
+    ({ invite } = await response.json());
+  } catch {
+    return;
+  }
+
+  if (typeof invite !== 'string' || !/^https:\/\/testflight\.apple\.com\/join\/[A-Za-z0-9]+$/.test(invite)) return;
+  const link = document.createElement('a');
+  link.className = 'get get-secondary';
+  link.href = invite;
+  link.textContent = 'iPhone Beta';
+  link.setAttribute('aria-label', 'iPhone Beta on TestFlight');
+  downloadActions.append(link);
+  return link;
+}
+
+const downloadActions = document.querySelector('.desktop-downloads');
+if (downloadActions) {
+  const iphoneBeta = addIPhoneBeta(downloadActions);
+  installPlatform(navigator).then(async platform => {
+    const recommended = platform === 'iphone'
+      ? await iphoneBeta
+      : downloadActions.querySelector(`[data-download-platform="${platform}"]`);
     if (!recommended) return;
+    if (platform === 'iphone') {
+      downloadActions.querySelector('[data-download-platform="mac"]')?.classList.add('get-secondary');
+    }
     recommended.classList.remove('get-secondary');
-    if (!recommended.parentElement.contains(document.activeElement)) {
-      recommended.parentElement.prepend(recommended);
+    if (!downloadActions.contains(document.activeElement)) {
+      downloadActions.prepend(recommended);
     }
   });
 }
