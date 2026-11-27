@@ -1,4 +1,4 @@
-function installPlatform({ userAgentData, platform, userAgent, maxTouchPoints }) {
+async function installPlatform({ userAgentData, platform, userAgent, maxTouchPoints }) {
   const device = userAgentData?.platform || platform || '';
   if (userAgentData?.mobile || /Android|CrOS|iPhone|iPad|iPod/i.test(device + ' ' + userAgent)) return '';
   if (/^Win/i.test(device) || /\bWindows NT\b/i.test(userAgent)) return 'windows';
@@ -6,19 +6,29 @@ function installPlatform({ userAgentData, platform, userAgent, maxTouchPoints })
     return maxTouchPoints > 1 ? '' : 'mac';
   }
   if (/^Linux/i.test(device) || /\bLinux\b/i.test(userAgent)) {
+    try {
+      const hints = await userAgentData?.getHighEntropyValues(['architecture', 'bitness']);
+      if (hints?.bitness === '32') return '';
+      if (hints?.architecture === 'arm') return 'linux-arm64';
+      if (hints?.architecture === 'x86') return 'linux-amd64';
+    } catch {
+      // Fall back to the legacy platform when client hints are unavailable.
+    }
     return /\b(?:aarch64|arm64)\b/i.test(platform + ' ' + userAgent) ? 'linux-arm64' : 'linux-amd64';
   }
   return '';
 }
 
-const platform = installPlatform(navigator);
-if (platform) {
-  const downloads = document.querySelectorAll('[data-download-platform]');
-  for (const link of downloads) {
-    const preferred = link.dataset.downloadPlatform === platform;
-    link.classList.toggle('get-secondary', !preferred);
-    if (preferred) link.parentElement.prepend(link);
-  }
+const downloads = document.querySelectorAll('[data-download-platform]');
+if (downloads.length) {
+  installPlatform(navigator).then(platform => {
+    const recommended = [...downloads].find(link => link.dataset.downloadPlatform === platform);
+    if (!recommended) return;
+    recommended.classList.remove('get-secondary');
+    if (!recommended.parentElement.contains(document.activeElement)) {
+      recommended.parentElement.prepend(recommended);
+    }
+  });
 }
 
 document.querySelectorAll('[data-copy-install]').forEach(copy => copy.addEventListener('click', async () => {
